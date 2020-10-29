@@ -10,7 +10,6 @@ install:
   - poetry install
 
 script:
-  - cp README.md docs/
   - make lint test
 
 after_success:

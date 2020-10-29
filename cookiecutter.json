@@ -1,9 +1,11 @@
 {
     "project_name": "Base Project",
     "version": "1.0.0",
+    "project": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
     "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}",
     "description": "",
-    "author": "",
-    "repository": "https://github.com/daxartio/{{ cookiecutter.project_slug }}",
-    "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}"
+    "author": "Your Name <email@gmail.com>",
+    "nickname": "nickname",
+    "repository": "https://github.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }}",
+    "homepage": "https://pypi.org/project/{{ cookiecutter.project }}"
 }
