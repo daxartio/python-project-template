@@ -1,0 +1,38 @@
+site_name: "{{ cookiecutter.project_name }}"
+site_url: "{{ cookiecutter.homepage }}"
+site_description: "{{ cookiecutter.description }}"
+
+repo_name: "{{ cookiecutter.project_slug }}"
+repo_url: "{{ cookiecutter.repository }}"
+
+copyright: "Copyright &copy; 2020 {{ cookiecutter.author }}"
+
+nav:
+  - "Home": README.md
+
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: black
+    accent: yellow
+
+plugins:
+  - search:
+      lang: ru
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+      watch:
+        - "{{ cookiecutter.project_slug }}"
+
+extra_css:
+  - custom.css
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
