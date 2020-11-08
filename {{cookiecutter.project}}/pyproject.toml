@@ -10,7 +10,7 @@ homepage = "{{ cookiecutter.homepage }}"
 keywords = []
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.dev-dependencies]
 asynctest = "*"

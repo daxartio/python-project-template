@@ -1,6 +1,7 @@
 {
     "project_name": "Base Project",
     "version": "1.0.0",
+    "python_version": "3.9",
     "project": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
     "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}",
     "description": "",
