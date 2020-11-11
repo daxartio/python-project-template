@@ -8,5 +8,6 @@
     "author": "Your Name <email@gmail.com>",
     "nickname": "nickname",
     "repository": "https://github.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }}",
+    "branch": "master",
     "homepage": "https://pypi.org/project/{{ cookiecutter.project }}"
 }
