@@ -2,23 +2,25 @@
 CODE = {{ cookiecutter.project_slug }} tests
 TEST = pytest $(args) --verbosity=2 --showlocals --strict --log-level=DEBUG
 
-.PHONY: all
-all: format lint test test-report build docs clean
-
 .PHONY: help
 help:
 	@echo 'Usage: make [target] ...'
 	@echo ''
 	@echo '    make all'
+	@echo '    make build'
+	@echo '    make clean'
+	@echo '    make docs-changelog'
+	@echo '    make docs-serve'
+	@echo '    make docs'
 	@echo '    make format'
 	@echo '    make lint'
-	@echo '    make test'
-	@echo '    make test-report'
 	@echo '    make mut'
-	@echo '    make build'
-	@echo '    make docs'
-	@echo '    make clean'
+	@echo '    make test-report'
+	@echo '    make test'
 	@echo ''
+
+.PHONY: all
+all: format lint test test-report build docs clean
 
 .PHONY: update
 update:
@@ -56,6 +58,10 @@ docs:
 .PHONY: docs-serve
 docs-serve:
 	mkdocs serve
+
+.PHONY: docs-changelog
+docs-changelog:
+	git-changelog -o CHANGELOG.md  .
 
 .PHONY: build
 build:
