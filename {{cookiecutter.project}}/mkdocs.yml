@@ -10,7 +10,6 @@ copyright: "Copyright &copy; 2020 {{ cookiecutter.author }}"
 
 nav:
   - "Home": README.md
-  - "CHANGELOG": CHANGELOG.md
 
 theme:
   name: material
@@ -30,9 +29,6 @@ plugins:
             show_source: true
       watch:
         - "{{ cookiecutter.project_slug }}"
-
-extra_css:
-  - custom.css
 
 markdown_extensions:
   - admonition

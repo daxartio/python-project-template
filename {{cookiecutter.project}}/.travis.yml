@@ -16,7 +16,6 @@ after_success:
   - codecov
 
 before_deploy:
-  - cp CHANGELOG.md docs/
   - make build docs
 
 deploy:
