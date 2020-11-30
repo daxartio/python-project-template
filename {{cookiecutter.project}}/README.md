@@ -1,6 +1,6 @@
 # {{ cookiecutter.project_name }}
 
-[![Build Status](https://api.travis-ci.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }}.svg?branch=master)](https://travis-ci.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }})
+[![Build Status](https://api.travis-ci.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }}.svg?branch={{ cookiecutter.branch }})](https://travis-ci.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }})
 [![PyPI](https://img.shields.io/pypi/v/tinvest)](https://pypi.org/project/tinvest/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ cookiecutter.project }})](https://www.python.org/downloads/)
 [![Codecov](https://img.shields.io/codecov/c/github/{{ cookiecutter.nickname }}/{{ cookiecutter.project }})](https://travis-ci.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }})
