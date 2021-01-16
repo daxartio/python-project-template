@@ -7,6 +7,7 @@ help:
 	@echo 'Usage: make [target] ...'
 	@echo ''
 	@echo '    make all'
+	@echo '    make install'
 	@echo '    make build'
 	@echo '    make clean'
 	@echo '    make docs-changelog'
@@ -16,6 +17,8 @@ help:
 	@echo '    make lint'
 	@echo '    make mut'
 	@echo '    make test-report'
+	@echo '    make test-failed'
+	@echo '    make test-fast'
 	@echo '    make test'
 	@echo ''
 
@@ -29,6 +32,14 @@ update:
 .PHONY: test
 test:
 	$(TEST) --cov
+
+.PHONY: test-fast
+test-fast:
+	$(TEST) --exitfirst
+
+.PHONY: test-failed
+test-failed:
+	$(TEST) --last-failed
 
 .PHONY: test-report
 test-report:
@@ -66,6 +77,10 @@ docs-changelog:
 .PHONY: build
 build:
 	poetry build
+
+.PHONY: install
+install:
+	poetry install
 
 .PHONY: clean
 clean:
