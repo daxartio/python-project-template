@@ -5,7 +5,6 @@
 - MIT License
 - Makefile
 - poetry
-- travis-ci
 - formatting
 - linting
 - mkdocs

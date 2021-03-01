@@ -6,21 +6,21 @@ repo_name: "{{ cookiecutter.project_slug }}"
 repo_url: "{{ cookiecutter.repository }}"
 edit_uri: "edit/{{ cookiecutter.branch }}/docs/"
 
-copyright: "Copyright &copy; 2020 {{ cookiecutter.author }}"
+copyright: "Copyright &copy; 2021 {{ cookiecutter.author }}"
 
 nav:
   - "Home": README.md
 
 theme:
   name: material
-  language: ru
+  language: en
   palette:
     primary: black
     accent: yellow
 
 plugins:
   - search:
-      lang: ru
+      lang: en
   - mkdocstrings:
       default_handler: python
       handlers:
