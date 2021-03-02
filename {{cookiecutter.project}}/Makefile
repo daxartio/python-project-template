@@ -23,11 +23,23 @@ help:
 	@echo ''
 
 .PHONY: all
-all: format lint test test-report build docs clean
+all: format lint test
+
+.PHONY: lock
+lock:
+	poetry lock
 
 .PHONY: update
 update:
 	poetry update
+
+.PHONY: build
+build:
+	poetry build
+
+.PHONY: install
+install:
+	poetry install
 
 .PHONY: test
 test:
@@ -73,14 +85,6 @@ docs-serve:
 .PHONY: docs-changelog
 docs-changelog:
 	git-changelog -o CHANGELOG.md  .
-
-.PHONY: build
-build:
-	poetry build
-
-.PHONY: install
-install:
-	poetry install
 
 .PHONY: clean
 clean:
