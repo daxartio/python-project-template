@@ -9,6 +9,7 @@ help:
 	@echo '    make all'
 	@echo '    make install'
 	@echo '    make build'
+	@echo '    make publish'
 	@echo '    make clean'
 	@echo '    make docs-changelog'
 	@echo '    make docs-serve'
@@ -40,6 +41,10 @@ build:
 .PHONY: install
 install:
 	poetry install
+
+.PHONY: publish
+publish:
+	poetry publish --no-interaction --username=$(username) --password=$(password)
 
 .PHONY: test
 test:
