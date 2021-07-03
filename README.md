@@ -2,12 +2,14 @@
 
 ## Features
 
-- MIT License
-- Makefile
-- poetry
-- formatting
-- linting
-- mkdocs
+- [x] MIT License
+- [x] Makefile
+- [x] poetry
+- [x] formatting
+- [x] linting
+- [x] mkdocs
+- [x] git-changelog
+- [ ] github actions
 
 ## Quickstart
 
@@ -30,6 +32,7 @@ cd ./your-project
 git init
 gh repo create
 
+make install
 make format lint test
 
 git add .
