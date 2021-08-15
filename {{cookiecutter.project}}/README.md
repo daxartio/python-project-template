@@ -8,3 +8,7 @@
 ```
 pip install {{ cookiecutter.project }}
 ```
+
+## Contributing
+
+[Contributing](CONTRIBUTING.md)
