@@ -1,4 +1,4 @@
-# package-template
+# Python Project Template
 
 ## Features
 
@@ -19,10 +19,10 @@ Install the latest Cookiecutter
 pip install -U cookiecutter
 ```
 
-Generate a Python package project:
+Generate a Python project:
 
 ```
-cookiecutter https://github.com/daxartio/package-template.git
+cookiecutter https://github.com/daxartio/python-project-template.git
 ```
 
 Then:
