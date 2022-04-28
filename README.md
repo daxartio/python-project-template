@@ -9,7 +9,10 @@
 - [x] linting
 - [x] mkdocs
 - [x] git-changelog
-- [ ] github actions
+- [x] github actions
+    - [x] github pages
+    - [x] publish to pypi
+    - [x] run tests and linters
 
 ## Quickstart
 
