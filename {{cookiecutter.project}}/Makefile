@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 CODE = {{ cookiecutter.project_slug }} tests
-TEST = pytest $(args) --verbosity=2 --showlocals --strict-markers --log-level=DEBUG
+TEST = $(POETRY_RUN) pytest $(args) --verbosity=2 --showlocals --strict-markers --log-level=DEBUG
 
 .PHONY: help
 help: ## Show help
@@ -44,35 +44,49 @@ test-failed:  ## Test failed
 .PHONY: test-report
 test-report:  ## Report testing
 	$(TEST) --cov --cov-report html
-	python -m webbrowser 'htmlcov/index.html'
+	$(POETRY_RUN) python -m webbrowser 'htmlcov/index.html'
 
 .PHONY: lint
 lint:  ## Check code
-	flake8 --jobs 1 --statistics --show-source $(CODE)
-	pylint --jobs 1 --rcfile=setup.cfg $(CODE)
-	black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} --check $(CODE)
-	pytest --dead-fixtures --dup-fixtures
-	mypy $(CODE)
-	safety check --full-report
+	$(POETRY_RUN) flake8 --jobs 1 --statistics --show-source $(CODE)
+	$(POETRY_RUN) pylint --jobs 1 --rcfile=setup.cfg $(CODE)
+	$(POETRY_RUN) black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} --check $(CODE)
+	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
+	$(POETRY_RUN) mypy $(CODE)
+	$(POETRY_RUN) safety check --full-report
 
 .PHONY: format
 format:  ## Formating code
-	autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
-	isort $(CODE)
-	black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} $(CODE)
-	unify --in-place --recursive $(CODE)
+	$(POETRY_RUN) autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
+	$(POETRY_RUN) isort $(CODE)
+	$(POETRY_RUN) black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} $(CODE)
+	$(POETRY_RUN) unify --in-place --recursive $(CODE)
 
 .PHONY: docs
 docs:  ## Build docs
-	mkdocs build -s -v
+	$(POETRY_RUN) mkdocs build -s -v
 
 .PHONY: docs-serve
 docs-serve:  ## Serve docs
-	mkdocs serve
+	$(POETRY_RUN) mkdocs serve
 
 .PHONY: docs-changelog
 docs-changelog:  ## Build changelog
-	git-changelog -o CHANGELOG.md  .
+	$(POETRY_RUN) git-changelog -o CHANGELOG.md  .
+
+.PHONY: update-changelog  ## Update changelog (commit)
+update-changelog: docs-changelog
+	git add .
+	git commit -m "docs: update changelog"
+
+.PHONY: bump-version
+bump-version:  ## Bump version (commit and tag)
+	poetry version $(v)
+	git add . && git commit -m "Bump version $(v)"
+	git tag -m "" -a $(v)
+	$(POETRY_RUN) git-changelog -o CHANGELOG.md  .
+	git add .
+	git commit -m "docs: update changelog"
 
 .PHONY: clean
 clean:  ## Clean
@@ -82,4 +96,8 @@ clean:  ## Clean
 
 .PHONY: mut
 mut:  ## Mut test
-	mutmut run
+	$(POETRY_RUN) mutmut run
+
+.PHONY: git-lint
+git-lint:  ## Check git commit
+	$(POETRY_RUN) gitlint

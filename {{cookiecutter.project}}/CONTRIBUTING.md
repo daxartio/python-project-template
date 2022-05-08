@@ -29,5 +29,5 @@ make lint
 
 ## Release
 
-1. Change version in `pyproject.toml`
-1. `git tag`
+1. `make bump-version v=<new-version>`
+1. `git push` and `git push --tags`
