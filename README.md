@@ -4,15 +4,16 @@
 
 - [x] MIT License
 - [x] Makefile
-- [x] poetry
-- [x] formatting
-- [x] linting
-- [x] mkdocs
+- [x] Python Poetry
+- [x] Formatting
+- [x] Linter
+- [x] Mkdocs
 - [x] git-changelog
-- [x] github actions
-    - [x] github pages
-    - [x] publish to pypi
-    - [x] run tests and linters
+- [x] gitlint
+- [x] Github Actions
+    - [x] Github pages
+    - [x] Publish to pypi
+    - [x] Run tests and linters
 
 ## Quickstart
 
