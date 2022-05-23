@@ -72,7 +72,7 @@ docs-serve:  ## Serve docs
 
 .PHONY: docs-changelog
 docs-changelog:  ## Build changelog
-	$(POETRY_RUN) git-changelog -o CHANGELOG.md  .
+	$(POETRY_RUN) git-changelog -s conventional -o CHANGELOG.md .
 
 .PHONY: update-changelog  ## Update changelog (commit)
 update-changelog: docs-changelog

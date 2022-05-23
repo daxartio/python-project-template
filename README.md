@@ -8,8 +8,8 @@
 - [x] Formatting
 - [x] Linter
 - [x] Mkdocs
-- [x] git-changelog
-- [x] gitlint
+- [x] git-changelog [conventionalcommits](https://www.conventionalcommits.org/)
+- [x] gitlint [conventionalcommits](https://www.conventionalcommits.org/)
 - [x] Github Actions
     - [x] Github pages
     - [x] Publish to pypi
