@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 CODE = {{ cookiecutter.project_slug }} tests
-TEST = $(POETRY_RUN) pytest $(args) --verbosity=2 --showlocals --strict-markers --log-level=DEBUG
+POETRY_RUN = poetry run
+TEST = $(POETRY_RUN) pytest $(args)
 
 .PHONY: help
 help: ## Show help
@@ -49,8 +50,8 @@ test-report:  ## Report testing
 .PHONY: lint
 lint:  ## Check code
 	$(POETRY_RUN) flake8 --jobs 1 --statistics --show-source $(CODE)
-	$(POETRY_RUN) pylint --jobs 1 --rcfile=setup.cfg $(CODE)
-	$(POETRY_RUN) black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} --check $(CODE)
+	$(POETRY_RUN) pylint --jobs 1 --rcfile=pyproject.toml $(CODE)
+	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
 	$(POETRY_RUN) safety check --full-report
@@ -59,7 +60,7 @@ lint:  ## Check code
 format:  ## Formating code
 	$(POETRY_RUN) autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
 	$(POETRY_RUN) isort $(CODE)
-	$(POETRY_RUN) black --skip-string-normalization --line-length={{ cookiecutter.max_line_length}} $(CODE)
+	$(POETRY_RUN) black $(CODE)
 	$(POETRY_RUN) unify --in-place --recursive $(CODE)
 
 .PHONY: docs
@@ -93,10 +94,6 @@ clean:  ## Clean
 	rm -rf site || true
 	rm -rf dist || true
 	rm -rf htmlcov || true
-
-.PHONY: mut
-mut:  ## Mut test
-	$(POETRY_RUN) mutmut run
 
 .PHONY: git-lint
 git-lint:  ## Check git commit
