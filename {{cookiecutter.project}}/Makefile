@@ -85,9 +85,7 @@ bump-version:  ## Bump version (commit and tag)
 	poetry version $(v)
 	git add . && git commit -m "Bump version $(v)"
 	git tag -m "" -a $(v)
-	$(POETRY_RUN) git-changelog -o CHANGELOG.md  .
-	git add .
-	git commit -m "docs: update changelog"
+	make update-changelog
 
 .PHONY: clean
 clean:  ## Clean

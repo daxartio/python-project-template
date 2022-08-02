@@ -4,6 +4,7 @@
 
 - [x] MIT License
 - [x] Makefile
+- [ ] [Poe the Poet](https://github.com/nat-n/poethepoet)
 - [x] Python Poetry
 - [x] Formatting
 - [x] Linter
