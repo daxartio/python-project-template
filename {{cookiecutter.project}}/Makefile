@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := help
-MAIN_CODE = {{ cookiecutter.project_slug }}
-CODE = $(MAIN_CODE) tests
+CODE = {{ cookiecutter.project_slug }} tests
 POETRY_RUN = poetry run
 TEST = $(POETRY_RUN) pytest $(args)
 
@@ -52,7 +51,7 @@ test-report:  ## Report testing
 lint:  ## Check code
 	$(POETRY_RUN) flake8 --jobs 1 --statistics --show-source $(CODE)
 	$(POETRY_RUN) pylint --jobs 1 --rcfile=pyproject.toml $(CODE)
-	$(POETRY_RUN) bandit -r $(MAIN_CODE)
+	$(POETRY_RUN) bandit -c pyproject.toml -r $(CODE)
 	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
