@@ -55,7 +55,6 @@ lint:  ## Check code
 	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
-	$(POETRY_RUN) safety check --full-report
 
 .PHONY: format
 format:  ## Formating code
