@@ -10,5 +10,6 @@
     "repository": "https://github.com/{{ cookiecutter.nickname }}/{{ cookiecutter.project }}",
     "branch": "master",
     "homepage": "https://pypi.org/project/{{ cookiecutter.project }}",
-    "year": "2022"
+    "year": "{% now 'utc', '%Y' %}",
+    "task_runner": ["Makefile", "poethepoet"]
 }

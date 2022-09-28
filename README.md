@@ -3,8 +3,9 @@
 ## Features
 
 - [x] MIT License
-- [x] Makefile
-- [ ] [Poe the Poet](https://github.com/nat-n/poethepoet)
+- [x] Task runner
+  - [x] Makefile
+  - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
 - [x] Python Poetry
 - [x] Formatting
 - [x] Linter
@@ -32,7 +33,7 @@ cookiecutter https://github.com/daxartio/python-project-template.git
 
 Then:
 
-```
+```bash
 cd ./your-project
 git init
 gh repo create
@@ -40,7 +41,11 @@ gh repo create
 make install
 make format lint test
 
+# or
+# poetry install
+# poetry run poe all
+
 git add .
-git commit -m "Init"
+git commit -m "feat: init"
 git push
 ```

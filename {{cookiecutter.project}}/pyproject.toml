@@ -39,7 +39,8 @@ mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings = "*"
 mypy = "*"
-pep8-naming = "*"
+pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
+poethepoet = "*"{% endif %}
 pylint = "*"
 pytest = "*"
 pytest-asyncio = "*"
@@ -50,9 +51,104 @@ toml = "*"
 unify = "*"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+{% if cookiecutter.task_runner == "poethepoet" %}
+[tool.poe.env]
+CODE = "tests {{ cookiecutter.project_slug }}"
 
+[tool.poe.tasks.all]
+help = "Run format lint test"
+sequence = ["format", "lint", "test"]
+default_item_type = "ref"
+
+[tool.poe.tasks.publish]
+help = "Publish package"
+cmd = "poetry publish --build --no-interaction --username=${pypi_username} --password=${pypi_password}"
+args = ["pypi_username", "pypi_password"]
+
+[tool.poe.tasks.test]
+help = "Test with coverage"
+cmd = "pytest --cov=./"
+
+[tool.poe.tasks.test-fast]
+help = "Test until error"
+cmd = "pytest --exitfirst"
+
+[tool.poe.tasks.test-failed]
+help = "Test failed"
+cmd = "pytest --last-failed"
+
+[tool.poe.tasks.test-report]
+help = "Report testing"
+sequence = [
+    {cmd = "pytest --cov --cov-report html"},
+    {cmd = "python -m webbrowser 'htmlcov/index.html'"},
+]
+
+[tool.poe.tasks.lint]
+help = "Check code"
+sequence = [
+    {cmd = "flake8 --jobs 1 --statistics --show-source ${CODE}"},
+    {cmd = "pylint --jobs 1 --rcfile=pyproject.toml ${CODE}"},
+    {cmd = "bandit -c pyproject.toml -r ${CODE}"},
+    {cmd = "black --check ${CODE}"},
+    {cmd = "pytest --dead-fixtures --dup-fixtures"},
+    {cmd = "mypy ${CODE}"},
+]
+
+[tool.poe.tasks.format]
+help = "Formating code"
+sequence = [
+	{cmd = "autoflake --recursive --in-place --remove-all-unused-imports ${CODE}"},
+	{cmd = "isort ${CODE}"},
+	{cmd = "black ${CODE}"},
+	{cmd = "unify --in-place --recursive ${CODE}"},
+]
+
+[tool.poe.tasks.docs]
+help = "Build docs"
+cmd = "mkdocs build -s -v"
+
+[tool.poe.tasks.docs-serve]
+help = "Serve docs"
+cmd = "mkdocs serve"
+
+[tool.poe.tasks.docs-changelog]
+help = "Build changelog"
+cmd = "git-changelog -s conventional -o CHANGELOG.md ."
+
+[tool.poe.tasks.update-changelog]
+help = "Update changelog (commit)"
+sequence = [
+    {ref = "docs-changelog"},
+    {cmd = "git add ."},
+    {cmd = "git commit -m \"docs: update changelog\""},
+]
+
+[tool.poe.tasks.bump-version]
+help = "Bump version (commit and tag)"
+args = [{name = "version", positional = true, required = true}]
+sequence = [
+    {cmd = "poetry version ${version}"},
+    {cmd = "git add ."},
+    {cmd = "git commit -m \"Bump version ${version}\""},
+    {cmd = "git tag -m \"\" -a ${version}"},
+    {ref = "update-changelog"},
+]
+
+[tool.poe.tasks.clean]
+help = "Clean"
+sequence = [
+	{cmd = "rm -rf site || true"},
+	{cmd = "rm -rf dist || true"},
+	{cmd = "rm -rf htmlcov || true"},
+]
+
+[tool.poe.tasks.git-lint]
+help = "Check git commit"
+cmd = "gitlint"
+{% endif %}
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_generics = true

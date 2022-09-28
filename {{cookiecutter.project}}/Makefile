@@ -28,7 +28,7 @@ install:  ## Install dependencies
 
 .PHONY: publish
 publish:  ## Publish package
-	poetry publish --build --no-interaction --username=$(pypi_username) --password=$(pypi_password)
+	@poetry publish --build --no-interaction --username=$(pypi_username) --password=$(pypi_password)
 
 .PHONY: test
 test:  ## Test with coverage
