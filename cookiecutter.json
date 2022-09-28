@@ -11,5 +11,6 @@
     "branch": "master",
     "homepage": "https://pypi.org/project/{{ cookiecutter.project }}",
     "year": "{% now 'utc', '%Y' %}",
-    "task_runner": ["Makefile", "poethepoet"]
+    "task_runner": ["Makefile", "poethepoet"],
+    "license": ["MIT", "APACHE"]
 }

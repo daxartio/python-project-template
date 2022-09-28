@@ -2,7 +2,7 @@
 
 ## Features
 
-- [x] MIT License
+- [x] MIT/Apache License
 - [x] Task runner
   - [x] Makefile
   - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
