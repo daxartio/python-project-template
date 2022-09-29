@@ -6,12 +6,23 @@
 - [x] Task runner
   - [x] Makefile
   - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
-- [x] Python Poetry
+- [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
 - [x] Formatting
-- [x] Linter
-- [x] Mkdocs
-- [x] git-changelog [conventionalcommits](https://www.conventionalcommits.org/)
-- [x] gitlint [conventionalcommits](https://www.conventionalcommits.org/)
+  - [x] black
+  - [x] isort
+  - [x] autoflake
+  - [x] unify
+- [x] Linters
+  - [x] flake8
+  - [x] pylint
+  - [x] bandit
+  - [x] black
+  - [x] mypy
+- [x] Pytest
+- [x] Documentation with [mkdocs](https://www.mkdocs.org/)
+- [x] [Conventional Commits](https://www.conventionalcommits.org/)
+  - [x] git-changelog
+  - [x] gitlint
 - [x] Github Actions
     - [x] Github pages
     - [x] Publish to pypi
