@@ -19,6 +19,7 @@ theme:
     accent: yellow
 
 plugins:
+  - include-markdown
   - search:
       lang: en
   - mkdocstrings:
