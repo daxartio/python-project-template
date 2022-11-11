@@ -8,11 +8,13 @@
   - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
 - [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
 - [x] Formatting
+  - [x] ruff
   - [x] black
   - [x] isort
   - [x] autoflake
   - [x] unify
 - [x] Linters
+  - [x] ruff
   - [x] flake8
   - [x] pylint
   - [x] bandit

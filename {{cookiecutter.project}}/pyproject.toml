@@ -48,6 +48,7 @@ pytest-asyncio = "*"
 pytest-cov = "*"
 pytest-deadfixtures = "*"
 pytest-mock = "*"
+ruff = "^0.0.111"
 toml = "*"
 unify = "*"
 
@@ -90,6 +91,7 @@ sequence = [
 [tool.poe.tasks.lint]
 help = "Check code"
 sequence = [
+    {cmd = "ruff ${CODE}"},
     {cmd = "flake8 --jobs 1 --statistics --show-source ${CODE}"},
     {cmd = "pylint --jobs 1 --rcfile=pyproject.toml ${CODE}"},
     {cmd = "bandit -c pyproject.toml -r ${CODE}"},
@@ -101,6 +103,7 @@ sequence = [
 [tool.poe.tasks.format]
 help = "Formating code"
 sequence = [
+	{cmd = "ruff --fix ${CODE}"},
 	{cmd = "autoflake --recursive --in-place --remove-all-unused-imports ${CODE}"},
 	{cmd = "isort ${CODE}"},
 	{cmd = "black ${CODE}"},
@@ -204,3 +207,32 @@ log_level = "DEBUG"
 
 [tool.bandit]
 exclude_dirs = ["tests"]
+
+[tool.ruff]
+line-length = 88
+select = [
+    "D",
+    "B",
+    "C",
+    "E",
+    "F",
+    "N",
+    "Q",
+    "RUF001",
+    "T",
+    "W",
+]
+ignore = [
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "D107",
+    "D203",
+    "D213",
+    "B008",
+]
+exclude = []
