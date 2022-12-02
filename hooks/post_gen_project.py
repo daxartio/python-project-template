@@ -6,6 +6,7 @@ LICENSE = "{{ cookiecutter.license }}"
 USE_MIT = LICENSE == 'MIT'
 USE_APACHE = LICENSE == 'APACHE'
 
+
 def main():
     if not USE_MAKEFILE:
         os.remove('Makefile')
