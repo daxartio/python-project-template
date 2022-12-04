@@ -64,7 +64,7 @@ format:  ## Formating code
 	$(POETRY_RUN) isort $(CODE)
 	$(POETRY_RUN) black $(CODE)
 	$(POETRY_RUN) unify --in-place --recursive $(CODE)
-
+{% if cookiecutter.use_docs == 'True' %}
 .PHONY: docs
 docs:  ## Build docs
 	$(POETRY_RUN) mkdocs build -s -v
@@ -72,7 +72,7 @@ docs:  ## Build docs
 .PHONY: docs-serve
 docs-serve:  ## Serve docs
 	$(POETRY_RUN) mkdocs serve
-
+{% endif %}
 .PHONY: docs-changelog
 docs-changelog:  ## Build changelog
 	$(POETRY_RUN) git-changelog -s conventional -o CHANGELOG.md .

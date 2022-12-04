@@ -34,11 +34,11 @@ flake8-pytest-style = "*"
 flake8-requirements = "*"
 flake8-return = "*"
 git-changelog = "*"
-gitlint = "*"
+gitlint = "*"{% if cookiecutter.use_docs == 'True' %}
 mkdocs = "*"
 mkdocs-include-markdown-plugin = "^3.9.1"
 mkdocs-material = "*"
-mkdocstrings = "*"
+mkdocstrings = "*"{% endif %}
 mypy = "*"
 pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
 poethepoet = "*"{% endif %}
@@ -109,7 +109,7 @@ sequence = [
 	{cmd = "black ${CODE}"},
 	{cmd = "unify --in-place --recursive ${CODE}"},
 ]
-
+{% if cookiecutter.use_docs == 'True' %}
 [tool.poe.tasks.docs]
 help = "Build docs"
 cmd = "mkdocs build -s -v"
@@ -117,7 +117,7 @@ cmd = "mkdocs build -s -v"
 [tool.poe.tasks.docs-serve]
 help = "Serve docs"
 cmd = "mkdocs serve"
-
+{% endif %}
 [tool.poe.tasks.docs-changelog]
 help = "Build changelog"
 cmd = "git-changelog -s conventional -o CHANGELOG.md ."

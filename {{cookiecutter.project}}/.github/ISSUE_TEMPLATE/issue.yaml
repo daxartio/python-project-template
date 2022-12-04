@@ -1,6 +1,5 @@
 name: Issue
 description: "..."
-labels: []
 body:
 - type: textarea
   id: description
@@ -49,4 +48,4 @@ body:
   attributes:
     label: Logs
     description: Copy and paste your logs to here.
-    render: shell
+    render: Shell
