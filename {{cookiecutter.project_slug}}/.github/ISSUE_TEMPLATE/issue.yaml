@@ -11,7 +11,7 @@ body:
   id: package-version
   attributes:
     label: Python Package version
-    description: What {{ cookiecutter.project }} version do you use?
+    description: What {{ cookiecutter.project_slug }} version do you use?
     options:
     - {{ cookiecutter.version }}
     - Other

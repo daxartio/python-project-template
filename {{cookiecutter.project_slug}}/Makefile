@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-CODE = {{ cookiecutter.project_slug }} tests
+CODE = {{ cookiecutter.pkg_name }} tests
 POETRY_RUN = poetry run
 TEST = $(POETRY_RUN) pytest $(args)
 

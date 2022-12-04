@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "{{ cookiecutter.project }}"
+name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.description }}"
 authors = ["{{ cookiecutter.author }}"]
@@ -57,7 +57,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 {% if cookiecutter.task_runner == "poethepoet" %}
 [tool.poe.env]
-CODE = "tests {{ cookiecutter.project_slug }}"
+CODE = "tests {{ cookiecutter.pkg_name }}"
 
 [tool.poe.tasks.all]
 help = "Run format lint test"

@@ -2,7 +2,7 @@ site_name: "{{ cookiecutter.project_name }}"
 site_url: "{{ cookiecutter.homepage }}"
 site_description: "{{ cookiecutter.description }}"
 
-repo_name: "{{ cookiecutter.project_slug }}"
+repo_name: "{{ cookiecutter.pkg_name }}"
 repo_url: "{{ cookiecutter.repository }}"
 edit_uri: "edit/{{ cookiecutter.branch }}/docs/"
 
@@ -29,7 +29,7 @@ plugins:
           rendering:
             show_source: true
       watch:
-        - "{{ cookiecutter.project_slug }}"
+        - "{{ cookiecutter.pkg_name }}"
 
 markdown_extensions:
   - admonition
