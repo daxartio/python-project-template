@@ -26,9 +26,11 @@
   - [x] git-changelog
   - [x] gitlint
 - [x] Github Actions
-    - [x] Github pages
-    - [x] Publish to pypi
-    - [x] Run tests and linters
+  - [x] Github pages
+  - [x] Publish to pypi
+  - [x] Run tests and linters
+- [ ] CLI
+  - [ ] [typer](https://typer.tiangolo.com)
 
 ## Quickstart
 
