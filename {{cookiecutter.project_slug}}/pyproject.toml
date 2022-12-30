@@ -59,6 +59,10 @@ build-backend = "poetry.core.masonry.api"
 [tool.poe.env]
 CODE = "tests {{ cookiecutter.pkg_name }}"
 
+[tool.poe.tasks.install]
+help = "Install dependencies"
+cmd = "poetry install"
+
 [tool.poe.tasks.all]
 help = "Run format lint test"
 sequence = ["format", "lint", "test"]
