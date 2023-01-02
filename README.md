@@ -4,8 +4,8 @@
 
 - [x] MIT/Apache License
 - [x] Task runner
-  - [x] Makefile
   - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
+  - [x] Makefile
 - [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
 - [x] Formatting
   - [x] ruff
@@ -30,6 +30,7 @@
   - [x] Publish to pypi
   - [x] Run tests and linters
 - [ ] CLI
+  - [x] [argparse](https://docs.python.org/3/howto/argparse.html)
   - [ ] [typer](https://typer.tiangolo.com)
 
 ## Quickstart

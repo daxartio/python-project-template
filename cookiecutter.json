@@ -21,5 +21,6 @@
         "MIT",
         "APACHE"
     ],
-    "use_docs": true
+    "use_docs": true,
+    "use_cli": false
 }

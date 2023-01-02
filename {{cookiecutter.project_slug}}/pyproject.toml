@@ -8,7 +8,10 @@ readme = "README.md"
 repository = "{{ cookiecutter.repository }}"
 homepage = "{{ cookiecutter.homepage }}"
 keywords = []
-
+{% if cookiecutter.use_cli == 'True' %}
+[tool.poetry.scripts]
+{{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli.app:run'
+{% endif %}
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
 
@@ -33,6 +36,7 @@ flake8-pytest = "*"
 flake8-pytest-style = "*"
 flake8-requirements = "*"
 flake8-return = "*"
+flake8-tidy-imports = "*"
 git-changelog = "*"
 gitlint = "*"{% if cookiecutter.use_docs == 'True' %}
 mkdocs = "*"
