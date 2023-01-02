@@ -14,8 +14,8 @@
     "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "year": "{% now 'utc', '%Y' %}",
     "task_runner": [
-        "Makefile",
-        "poethepoet"
+        "poethepoet",
+        "Makefile"
     ],
     "license": [
         "MIT",
