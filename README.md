@@ -51,17 +51,11 @@ Then:
 
 ```bash
 cd ./your-project
-git init
-gh repo create
 
 make install
 make format lint test
 
 # or
 # poetry install
-# poetry run poe all
-
-git add .
-git commit -m "feat: init"
-git push
+# poe all
 ```
