@@ -14,6 +14,10 @@ all: format lint test  ## Run format lint test
 install:  ## Install dependencies
 	poetry install
 
+.PHONY: install
+install-docs:  ## Install docs dependencies
+	poetry install --only docs
+
 .PHONY: publish
 publish:  ## Publish package
 	@poetry publish --build --no-interaction --username=$(pypi_username) --password=$(pypi_password)

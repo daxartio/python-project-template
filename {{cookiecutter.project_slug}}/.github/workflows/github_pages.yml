@@ -15,7 +15,7 @@ jobs:
         run: pip install poetry
 
       - name: Install python dependencies
-        run: make install
+        run: make install-docs
 
       - name: Generate docs
         run: make docs

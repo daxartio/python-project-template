@@ -4,7 +4,7 @@
     "pkg_name": "{{ cookiecutter.project_slug|replace('-', '_') }}",
     "description": "",
     "version": "1.0.0",
-    "python_version": "3.10",
+    "python_version": "3.11",
     "full_name": "Your Name",
     "email": "email@gmail.com",
     "author": "{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>",
@@ -14,8 +14,8 @@
     "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "year": "{% now 'utc', '%Y' %}",
     "task_runner": [
-        "poethepoet",
-        "Makefile"
+        "Makefile",
+        "poethepoet"
     ],
     "license": [
         "MIT",

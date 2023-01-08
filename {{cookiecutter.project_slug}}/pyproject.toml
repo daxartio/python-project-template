@@ -3,7 +3,7 @@ name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.description }}"
 authors = ["{{ cookiecutter.author }}"]
-license = "MIT"
+license = {% if cookiecutter.license == 'MIT' %}"MIT"{% endif %}{% if cookiecutter.license == 'APACHE' %}"Apache-2.0"{% endif %}
 readme = "README.md"
 repository = "{{ cookiecutter.repository }}"
 homepage = "{{ cookiecutter.homepage }}"
@@ -15,7 +15,7 @@ keywords = []
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autoflake = "*"
 bandit = "*"
 black = "*"
@@ -38,11 +38,7 @@ flake8-requirements = "*"
 flake8-return = "*"
 flake8-tidy-imports = "*"
 git-changelog = "*"
-gitlint = "*"{% if cookiecutter.use_docs == 'True' %}
-mkdocs = "*"
-mkdocs-include-markdown-plugin = "^3.9.1"
-mkdocs-material = "*"
-mkdocstrings = "*"{% endif %}
+gitlint = "*"
 mypy = "*"
 pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
 poethepoet = "*"{% endif %}
@@ -55,7 +51,13 @@ pytest-mock = "*"
 ruff = "*"
 toml = "*"
 unify = "*"
-
+{% if cookiecutter.use_docs == 'True' %}
+[tool.poetry.group.docs.dependencies]
+mkdocs = "*"
+mkdocs-include-markdown-plugin = "*"
+mkdocs-material = "*"
+mkdocstrings = "*"
+{% endif %}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
@@ -66,6 +68,10 @@ CODE = "tests {{ cookiecutter.pkg_name }}"
 [tool.poe.tasks.install]
 help = "Install dependencies"
 cmd = "poetry install"
+
+[tool.poe.tasks.install-docs]
+help = "Install docs dependencies"
+cmd = "poetry install --only docs"
 
 [tool.poe.tasks.all]
 help = "Run format lint test"
