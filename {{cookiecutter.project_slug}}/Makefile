@@ -10,18 +10,6 @@ help: ## Show help
 .PHONY: all
 all: format lint test  ## Run format lint test
 
-.PHONY: lock
-lock:  ## Lock dependencies
-	poetry lock
-
-.PHONY: update
-update:  ## Update dependencies
-	poetry update
-
-.PHONY: build
-build:  ## Build package
-	poetry build
-
 .PHONY: install
 install:  ## Install dependencies
 	poetry install
@@ -73,19 +61,19 @@ docs:  ## Build docs
 docs-serve:  ## Serve docs
 	$(POETRY_RUN) mkdocs serve
 {% endif %}
-.PHONY: docs-changelog
-docs-changelog:  ## Build changelog
+.PHONY: changelog
+changelog:  ## Build changelog
 	$(POETRY_RUN) git-changelog -s conventional -o CHANGELOG.md .
 
 .PHONY: update-changelog  ## Update changelog (commit)
-update-changelog: docs-changelog
+update-changelog: changelog
 	git add .
 	git commit -m "docs: update changelog"
 
 .PHONY: bump-version
 bump-version:  ## Bump version (commit and tag)
 	poetry version $(v)
-	git add . && git commit -m "Bump version $(v)"
+	git add . && git commit -m "bump version $(v)"
 	git tag -m "" -a $(v)
 	make update-changelog
 

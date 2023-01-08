@@ -126,14 +126,14 @@ cmd = "mkdocs build -s -v"
 help = "Serve docs"
 cmd = "mkdocs serve"
 {% endif %}
-[tool.poe.tasks.docs-changelog]
+[tool.poe.tasks.changelog]
 help = "Build changelog"
 cmd = "git-changelog -s conventional -o CHANGELOG.md ."
 
 [tool.poe.tasks.update-changelog]
 help = "Update changelog (commit)"
 sequence = [
-    {ref = "docs-changelog"},
+    {ref = "changelog"},
     {cmd = "git add ."},
     {cmd = "git commit -m \"docs: update changelog\""},
 ]
@@ -144,7 +144,7 @@ args = [{name = "version", positional = true, required = true}]
 sequence = [
     {cmd = "poetry version ${version}"},
     {cmd = "git add ."},
-    {cmd = "git commit -m \"Bump version ${version}\""},
+    {cmd = "git commit -m \"bump version ${version}\""},
     {cmd = "git tag -m \"\" -a ${version}"},
     {ref = "update-changelog"},
 ]
