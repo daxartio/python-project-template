@@ -13,17 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install poetry
-        run: pip install poetry
-
       - name: Install python dependencies
-        run: make install
+        run: make install-poetry install
 
       - name: Run gitlint
         run: make git-lint
 
       - name: Run linters
         run: make lint
-
+{% if cookiecutter.use_docs == 'True' %}
+      - name: Test docs
+        run: make docs
+{% endif %}
       - name: Run test
         run: make test

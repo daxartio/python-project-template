@@ -16,6 +16,7 @@ keywords = []
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
+auto-changelog = "*"
 autoflake = "*"
 bandit = "*"
 black = "*"
@@ -37,7 +38,6 @@ flake8-pytest-style = "*"
 flake8-requirements = "*"
 flake8-return = "*"
 flake8-tidy-imports = "*"
-git-changelog = "*"
 gitlint = "*"
 mypy = "*"
 pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
@@ -64,6 +64,10 @@ build-backend = "poetry.core.masonry.api"
 {% if cookiecutter.task_runner == "poethepoet" %}
 [tool.poe.env]
 CODE = "tests {{ cookiecutter.pkg_name }}"
+
+[tool.poe.tasks.install-poetry]
+help = "Install poetry"
+cmd = "pip install poetry"
 
 [tool.poe.tasks.install]
 help = "Install dependencies"
@@ -134,25 +138,18 @@ cmd = "mkdocs serve"
 {% endif %}
 [tool.poe.tasks.changelog]
 help = "Build changelog"
-cmd = "git-changelog -s conventional -o CHANGELOG.md ."
+args = [{name = "version", positional = true, required = true}]
+cmd = "auto-changelog -v ${version}"
 
-[tool.poe.tasks.update-changelog]
-help = "Update changelog (commit)"
-sequence = [
-    {ref = "changelog"},
-    {cmd = "git add ."},
-    {cmd = "git commit -m \"docs: update changelog\""},
-]
-
-[tool.poe.tasks.bump-version]
+[tool.poe.tasks.bump]
 help = "Bump version (commit and tag)"
 args = [{name = "version", positional = true, required = true}]
 sequence = [
     {cmd = "poetry version ${version}"},
+    {ref = "changelog ${version}"},
     {cmd = "git add ."},
-    {cmd = "git commit -m \"bump version ${version}\""},
+    {cmd = "git commit -m \"bump: version ${version}\""},
     {cmd = "git tag -m \"\" -a ${version}"},
-    {ref = "update-changelog"},
 ]
 
 [tool.poe.tasks.clean]

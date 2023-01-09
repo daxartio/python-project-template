@@ -10,11 +10,15 @@ help: ## Show help
 .PHONY: all
 all: format lint test  ## Run format lint test
 
+.PHONY: install-poetry
+install-poetry:  ## Install poetry
+	pip install poetry
+
 .PHONY: install
 install:  ## Install dependencies
 	poetry install
 
-.PHONY: install
+.PHONY: install-docs
 install-docs:  ## Install docs dependencies
 	poetry install --only docs
 
@@ -67,19 +71,14 @@ docs-serve:  ## Serve docs
 {% endif %}
 .PHONY: changelog
 changelog:  ## Build changelog
-	$(POETRY_RUN) git-changelog -s conventional -o CHANGELOG.md .
+	$(POETRY_RUN) auto-changelog -v $(v)
 
-.PHONY: update-changelog  ## Update changelog (commit)
-update-changelog: changelog
-	git add .
-	git commit -m "docs: update changelog"
-
-.PHONY: bump-version
-bump-version:  ## Bump version (commit and tag)
+.PHONY: bump
+bump:  ## Bump version (commit and tag)
 	poetry version $(v)
-	git add . && git commit -m "bump version $(v)"
+	make changelog v=$(v)
+	git add . && git commit -m "bump: version $(v)"
 	git tag -m "" -a $(v)
-	make update-changelog
 
 .PHONY: clean
 clean:  ## Clean

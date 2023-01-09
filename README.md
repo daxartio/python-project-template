@@ -23,8 +23,6 @@
 - [x] Pytest
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
 - [x] [Conventional Commits](https://www.conventionalcommits.org/)
-  - [x] git-changelog
-  - [x] gitlint
 - [x] Github Actions
   - [x] Github pages
   - [x] Publish to pypi
