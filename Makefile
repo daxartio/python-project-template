@@ -6,5 +6,5 @@ install:
 
 .PHONY: up
 up:
-	rm -r base-project || true
+	rm -r simple-project || true
 	cookiecutter --no-input .

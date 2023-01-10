@@ -10,13 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+{% if cookiecutter.task_runner == "poethepoet" %}
+      - name: Install poethepoet
+        run: pip install poethepoet
 
+      - name: Install poetry
+        run: poe install-poetry
+
+      - name: Install docs dependencies
+        run: poe install-docs
+
+      - name: Generate docs
+        run: poe docs
+{% elif cookiecutter.task_runner == "Makefile" %}
       - name: Install python dependencies
         run: make install-poetry install-docs
 
       - name: Generate docs
         run: make docs
-
+{% endif %}
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:

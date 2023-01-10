@@ -1,5 +1,5 @@
 {
-    "project_name": "Base Project",
+    "project_name": "Simple Project",
     "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
     "pkg_name": "{{ cookiecutter.project_slug|replace('-', '_') }}",
     "description": "",
@@ -14,8 +14,8 @@
     "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "year": "{% now 'utc', '%Y' %}",
     "task_runner": [
-        "Makefile",
-        "poethepoet"
+        "poethepoet",
+        "Makefile"
     ],
     "license": [
         "MIT",

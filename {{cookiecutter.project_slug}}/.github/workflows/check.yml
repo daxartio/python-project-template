@@ -12,7 +12,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+{% if cookiecutter.task_runner == "poethepoet" %}
+      - name: Install poetry
+        run: pip install poetry
 
+      - name: Install python dependencies
+        run: poe install
+
+      - name: Run gitlint
+        run: poe git-lint
+
+      - name: Run linters
+        run: poe lint
+{% if cookiecutter.use_docs == 'True' %}
+      - name: Test docs
+        run: poe docs
+{% endif %}
+      - name: Run test
+        run: poe test
+{% elif cookiecutter.task_runner == "Makefile" %}
       - name: Install python dependencies
         run: make install-poetry install
 
@@ -27,3 +45,4 @@ jobs:
 {% endif %}
       - name: Run test
         run: make test
+{% endif %}
