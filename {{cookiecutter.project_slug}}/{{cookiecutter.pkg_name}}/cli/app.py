@@ -12,5 +12,5 @@ def _parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def run():
-    args = _parse_args()
+def run() -> None:
+    _ = _parse_args()
