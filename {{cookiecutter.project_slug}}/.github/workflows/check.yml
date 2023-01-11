@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 {% if cookiecutter.task_runner == "poethepoet" %}
-      - name: Install poetry
-        run: pip install poetry
+      - name: Install poetry and poethepoet
+        run: pip install poetry poethepoet
 
       - name: Install python dependencies
         run: poe install

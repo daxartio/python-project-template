@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 {% if cookiecutter.task_runner == "poethepoet" %}
-      - name: Install poetry
+      - name: Install poetry and poethepoet
         run: pip install poetry poethepoet
 
       - name: Publish package to pypi
