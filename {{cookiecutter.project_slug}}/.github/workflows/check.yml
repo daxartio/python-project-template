@@ -19,9 +19,6 @@ jobs:
       - name: Install python dependencies
         run: poe install
 
-      - name: Run gitlint
-        run: poe git-lint
-
       - name: Run linters
         run: poe lint
 {% if cookiecutter.use_docs == 'True' %}
@@ -33,9 +30,6 @@ jobs:
 {% elif cookiecutter.task_runner == "Makefile" %}
       - name: Install python dependencies
         run: make install-poetry install
-
-      - name: Run gitlint
-        run: make git-lint
 
       - name: Run linters
         run: make lint

@@ -69,14 +69,10 @@ docs:  ## Build docs
 docs-serve:  ## Serve docs
 	$(POETRY_RUN) mkdocs serve
 {% endif %}
-.PHONY: changelog
-changelog:  ## Build changelog
-	$(POETRY_RUN) auto-changelog -v $(v)
 
 .PHONY: bump
 bump:  ## Bump version (commit and tag)
 	poetry version $(v)
-	make changelog v=$(v)
 	git add . && git commit -m "bump: version $(v)"
 	git tag -m "" -a $(v)
 
@@ -85,7 +81,3 @@ clean:  ## Clean
 	rm -rf site || true
 	rm -rf dist || true
 	rm -rf htmlcov || true
-
-.PHONY: git-lint
-git-lint:  ## Check git commit
-	$(POETRY_RUN) gitlint

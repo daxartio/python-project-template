@@ -22,7 +22,6 @@
   - [x] mypy
 - [x] Pytest
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
-- [x] [Conventional Commits](https://www.conventionalcommits.org/)
 - [x] Github Actions
   - [x] Github pages
   - [x] Publish to pypi

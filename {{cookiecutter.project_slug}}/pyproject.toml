@@ -136,17 +136,12 @@ cmd = "mkdocs build -s -v"
 help = "Serve docs"
 cmd = "mkdocs serve"
 {% endif %}
-[tool.poe.tasks.changelog]
-help = "Build changelog"
-args = [{name = "version", positional = true, required = true}]
-cmd = "auto-changelog -v ${version}"
 
 [tool.poe.tasks.bump]
 help = "Bump version (commit and tag)"
 args = [{name = "version", positional = true, required = true}]
 sequence = [
     {cmd = "poetry version ${version}"},
-    {ref = "changelog ${version}"},
     {cmd = "git add ."},
     {cmd = "git commit -m \"bump: version ${version}\""},
     {cmd = "git tag -m \"\" -a ${version}"},
@@ -159,10 +154,6 @@ sequence = [
 	{cmd = "rm -rf dist || true"},
 	{cmd = "rm -rf htmlcov || true"},
 ]
-
-[tool.poe.tasks.git-lint]
-help = "Check git commit"
-cmd = "gitlint"
 {% endif %}
 [tool.mypy]
 check_untyped_defs = true
