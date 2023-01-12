@@ -54,7 +54,7 @@ lint:  ## Check code
 	$(POETRY_RUN) mypy $(CODE)
 
 .PHONY: format
-format:  ## Formating code
+format:  ## Formatting code
 	$(POETRY_RUN) ruff --fix $(CODE)
 	$(POETRY_RUN) autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
 	$(POETRY_RUN) isort $(CODE)

@@ -119,7 +119,7 @@ sequence = [
 ]
 
 [tool.poe.tasks.format]
-help = "Formating code"
+help = "Formatting code"
 sequence = [
 	{cmd = "ruff --fix ${CODE}"},
 	{cmd = "autoflake --recursive --in-place --remove-all-unused-imports ${CODE}"},
