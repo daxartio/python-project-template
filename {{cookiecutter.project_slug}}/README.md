@@ -31,4 +31,4 @@ from {{ cookiecutter.pkg_name }} import __version__
 
 ## Contribution
 
-[Contributing](CONTRIBUTING.md)
+[Contribution guidelines for this project](CONTRIBUTING.md)
