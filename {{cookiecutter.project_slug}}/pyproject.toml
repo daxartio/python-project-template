@@ -39,7 +39,6 @@ flake8-pytest-style = "*"
 flake8-requirements = "*"
 flake8-return = "*"
 flake8-tidy-imports = "*"
-gitlint = "*"
 mypy = "*"
 pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
 poethepoet = "*"{% endif %}
