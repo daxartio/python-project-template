@@ -33,6 +33,7 @@ flake8-if-expr = "*"
 flake8-isort = "*"
 flake8-logging-format = "*"
 flake8-print = "*"
+flake8-pyproject = "*"
 flake8-pytest = "*"
 flake8-pytest-style = "*"
 flake8-requirements = "*"
@@ -54,9 +55,7 @@ unify = "*"
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poetry.group.docs.dependencies]
 mkdocs = "*"
-mkdocs-include-markdown-plugin = "*"
 mkdocs-material = "*"
-mkdocstrings = "*"
 {% endif %}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -143,7 +142,7 @@ args = [{name = "version", positional = true, required = true}]
 sequence = [
     {cmd = "poetry version ${version}"},
     {cmd = "git add ."},
-    {cmd = "git commit -m \"bump: version ${version}\""},
+    {cmd = "git commit -m \"bump: bump version to ${version}\""},
     {cmd = "git tag -m \"\" -a ${version}"},
 ]
 
@@ -238,3 +237,18 @@ ignore = [
     "B008",
 ]
 exclude = []
+
+[tool.flake8]
+enable-extensions = "G"
+exclude = [".git", ".venv"]
+ignore = [
+    "A003", # 'id' is a python builtin, consider renaming the class attribute
+    "W503", # line break before binary operator
+    "G200", # Logging statement uses exception in arguments
+    "PT011", # set the match parameter in pytest.raises({exception})
+    "S101", # use of assert detected (useless with pytest)
+]
+max-complexity = 8
+max-line-length = 88
+show-source = true
+ban-relative-imports = "parents"

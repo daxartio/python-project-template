@@ -28,7 +28,7 @@ publish:  ## Publish package
 
 .PHONY: test
 test:  ## Test with coverage
-	$(TEST) --cov
+	$(TEST) --cov=./
 
 .PHONY: test-fast
 test-fast:  ## Test until error
@@ -73,7 +73,7 @@ docs-serve:  ## Serve docs
 .PHONY: bump
 bump:  ## Bump version (commit and tag)
 	poetry version $(v)
-	git add . && git commit -m "bump: version $(v)"
+	git add . && git commit -m "bump: bump version to $(v)"
 	git tag -m "" -a $(v)
 
 .PHONY: clean

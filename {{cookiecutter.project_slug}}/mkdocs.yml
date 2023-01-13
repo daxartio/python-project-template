@@ -19,17 +19,8 @@ theme:
     accent: yellow
 
 plugins:
-  - include-markdown
   - search:
       lang: en
-  - mkdocstrings:
-      default_handler: python
-      handlers:
-        python:
-          rendering:
-            show_source: true
-      watch:
-        - "{{ cookiecutter.pkg_name }}"
 
 markdown_extensions:
   - admonition
