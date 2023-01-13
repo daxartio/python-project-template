@@ -16,7 +16,6 @@ keywords = []
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-auto-changelog = "*"
 autoflake = "*"
 bandit = "*"
 black = "*"
