@@ -56,3 +56,8 @@ make format lint test
 # poetry install
 # poe all
 ```
+
+1. Generate an API token, see https://pypi.org/help/
+2. Add a token to https://github.com/username/your-project/settings/secrets/actions
+  - PYPI_USERNAME `__token__`
+  - PYPI_PASSWORD `pypi-...`
