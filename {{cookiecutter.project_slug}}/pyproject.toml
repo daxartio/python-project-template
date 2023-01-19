@@ -140,7 +140,7 @@ args = [{name = "version", positional = true, required = true}]
 sequence = [
     {cmd = "poetry version ${version}"},
     {cmd = "git add ."},
-    {cmd = "git commit -m \"bump: bump version to ${version}\""},
+    {cmd = "git commit -m \"chore(release): bump version to ${version}\""},
     {cmd = "git tag -m \"\" -a ${version}"},
 ]
 
