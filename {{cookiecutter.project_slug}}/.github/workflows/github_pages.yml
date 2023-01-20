@@ -2,7 +2,7 @@ name: Github pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ {{ cookiecutter.branch }} ]
   workflow_dispatch:
 
 jobs:

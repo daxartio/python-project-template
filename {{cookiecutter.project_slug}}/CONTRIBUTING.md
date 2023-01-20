@@ -38,9 +38,9 @@ Welcome! Happy to see you willing to make the project better.
 
 ## Release
 {% if cookiecutter.task_runner == "poethepoet" %}
-1. `poe bump <new-version>`
+1. `poe bump`
 {% elif cookiecutter.task_runner == "Makefile" %}
-1. `make bump v=<new-version>`
+1. `make bump`
 {% endif %}2. `git push` and `git push --tags`
 
 ## Commit Message Format

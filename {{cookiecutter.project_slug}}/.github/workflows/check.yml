@@ -2,9 +2,9 @@ name: CI Tests/Lints
 
 on:
   push:
-    branches: [ main ]
+    branches: [ {{ cookiecutter.branch }} ]
   pull_request:
-    branches: [ main ]
+    branches: [ {{ cookiecutter.branch }} ]
   workflow_dispatch:
 
 jobs:

@@ -72,9 +72,7 @@ docs-serve:  ## Serve docs
 
 .PHONY: bump
 bump:  ## Bump version (commit and tag)
-	poetry version $(v)
-	git add . && git commit -m "chore(release): bump version to $(v)"
-	git tag -m "" -a $(v)
+	$(POETRY_RUN) cz bump
 
 .PHONY: clean
 clean:  ## Clean
