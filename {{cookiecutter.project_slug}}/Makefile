@@ -46,9 +46,6 @@ test-report:  ## Report testing
 .PHONY: lint
 lint:  ## Check code
 	$(POETRY_RUN) ruff $(CODE)
-	$(POETRY_RUN) flake8 --jobs 1 --statistics --show-source $(CODE)
-	$(POETRY_RUN) pylint --jobs 1 --rcfile=pyproject.toml $(CODE)
-	$(POETRY_RUN) bandit -c pyproject.toml -r $(CODE)
 	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
@@ -56,10 +53,7 @@ lint:  ## Check code
 .PHONY: format
 format:  ## Formatting code
 	$(POETRY_RUN) ruff --fix $(CODE)
-	$(POETRY_RUN) autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
-	$(POETRY_RUN) isort $(CODE)
 	$(POETRY_RUN) black $(CODE)
-	$(POETRY_RUN) unify --in-place --recursive $(CODE)
 {% if cookiecutter.use_docs == 'True' %}
 .PHONY: docs
 docs:  ## Build docs

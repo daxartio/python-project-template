@@ -27,32 +27,10 @@ keywords = []
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-autoflake = "*"
-bandit = "*"
 black = "*"
 codecov = "*"
-flake8 = "*"
-flake8-annotations-complexity = "*"
-flake8-bandit = "*"
-flake8-breakpoint = "*"
-flake8-bugbear = "*"
-flake8-builtins = "*"
-flake8-comprehensions = "*"
-flake8-eradicate = "*"
-flake8-if-expr = "*"
-flake8-isort = "*"
-flake8-logging-format = "*"
-flake8-print = "*"
-flake8-pyproject = "*"
-flake8-pytest = "*"
-flake8-pytest-style = "*"
-flake8-requirements = "*"
-flake8-return = "*"
-flake8-tidy-imports = "*"
-mypy = "*"
-pep8-naming = "*"{% if cookiecutter.task_runner == "poethepoet" %}
+mypy = "*"{% if cookiecutter.task_runner == "poethepoet" %}
 poethepoet = "*"{% endif %}
-pylint = "*"
 pytest = "*"
 pytest-asyncio = "*"
 pytest-cov = "*"
@@ -60,7 +38,6 @@ pytest-deadfixtures = "*"
 pytest-mock = "*"
 ruff = "*"
 toml = "*"
-unify = "*"
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poetry.group.docs.dependencies]
 mkdocs = "*"
@@ -121,9 +98,6 @@ sequence = [
 help = "Check code"
 sequence = [
     {cmd = "ruff ${CODE}"},
-    {cmd = "flake8 --jobs 1 --statistics --show-source ${CODE}"},
-    {cmd = "pylint --jobs 1 --rcfile=pyproject.toml ${CODE}"},
-    {cmd = "bandit -c pyproject.toml -r ${CODE}"},
     {cmd = "black --check ${CODE}"},
     {cmd = "pytest --dead-fixtures --dup-fixtures"},
     {cmd = "mypy ${CODE}"},
@@ -133,10 +107,7 @@ sequence = [
 help = "Formatting code"
 sequence = [
 	{cmd = "ruff --fix ${CODE}"},
-	{cmd = "autoflake --recursive --in-place --remove-all-unused-imports ${CODE}"},
-	{cmd = "isort ${CODE}"},
 	{cmd = "black ${CODE}"},
-	{cmd = "unify --in-place --recursive ${CODE}"},
 ]
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poe.tasks.docs]
@@ -172,9 +143,6 @@ module = "tests.*"
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
-[tool.isort]
-profile = "black"
-
 [tool.coverage.run]
 omit = ["tests/*", "**/__main__.py", "**/.venv/*", "**/site-packages/*"]
 branch = true
@@ -184,49 +152,54 @@ show_missing = true
 skip_covered = true
 fail_under = 100
 
-[tool.pylint]
-good-names = ["i","j","k","e","x","_","pk","id"]
-max-args = 5
-max-attributes = 10
-max-bool-expr = 5
-max-module-lines = 300
-max-nested-blocks = 2
-max-public-methods = 30
-max-returns = 5
-max-statements = 30
-output-format = "colorized"
-ignored-classes = ["contextlib.closing"]
-disable = [
-    "C0111", # Missing module docstring (missing-docstring)
-    "R0901", # Too many ancestors (m/n) (too-many-ancestors)
-    "R0903", # Too few public methods (m/n) (too-few-public-methods)
-    "R0801", # duplicate-code
-]
-
-[tool.black]
-skip-string-normalization = true
-
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
 addopts = "--strict-markers --showlocals --verbosity 2"
 log_level = "DEBUG"
 
-[tool.bandit]
-exclude_dirs = ["tests"]
-
 [tool.ruff]
-line-length = 88
-select = [
-    "D",
-    "B",
-    "C",
+select = ["F",
     "E",
-    "F",
-    "N",
-    "Q",
-    "RUF001",
-    "T",
     "W",
+    "C90",
+    "I",
+    "N",
+    "D",
+    # "UP",
+    "YTT",
+    # "ANN",
+    "S",
+    "BLE",
+    # "FBT",
+    "B",
+    "A",
+    "COM",
+    "C4",
+    "DTZ",
+    "T10",
+    "EM",
+    "EXE",
+    "ISC",
+    "ICN",
+    "G",
+    "INP",
+    "PIE",
+    "T20",
+    "PT",
+    "Q",
+    "RET",
+    "SIM",
+    "TID",
+    "TCH",
+    "ARG",
+    "PTH",
+    "ERA",
+    "PD",
+    # "PGH",
+    "PL",
+    "TRY",
+    "RSE",
+    "RUF",
 ]
 ignore = [
     "D100",
@@ -239,21 +212,5 @@ ignore = [
     "D107",
     "D203",
     "D213",
-    "B008",
 ]
 exclude = []
-
-[tool.flake8]
-enable-extensions = "G"
-exclude = [".git", ".venv"]
-ignore = [
-    "A003", # 'id' is a python builtin, consider renaming the class attribute
-    "W503", # line break before binary operator
-    "G200", # Logging statement uses exception in arguments
-    "PT011", # set the match parameter in pytest.raises({exception})
-    "S101", # use of assert detected (useless with pytest)
-]
-max-complexity = 8
-max-line-length = 88
-show-source = true
-ban-relative-imports = "parents"
