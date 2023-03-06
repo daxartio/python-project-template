@@ -52,7 +52,7 @@ lint:  ## Check code
 
 .PHONY: format
 format:  ## Formatting code
-	$(POETRY_RUN) ruff --fix $(CODE)
+	$(POETRY_RUN) ruff --fix-only $(CODE)
 	$(POETRY_RUN) black $(CODE)
 {% if cookiecutter.use_docs == 'True' %}
 .PHONY: docs

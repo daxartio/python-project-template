@@ -106,7 +106,7 @@ sequence = [
 [tool.poe.tasks.format]
 help = "Formatting code"
 sequence = [
-	{cmd = "ruff --fix ${CODE}"},
+	{cmd = "ruff --fix-only ${CODE}"},
 	{cmd = "black ${CODE}"},
 ]
 {% if cookiecutter.use_docs == 'True' %}
