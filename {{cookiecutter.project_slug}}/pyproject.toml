@@ -27,24 +27,23 @@ keywords = []
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
-codecov = "*"
-mypy = "*"{% if cookiecutter.task_runner == "poethepoet" %}
-poethepoet = "*"{% endif %}
-pytest = "*"
-pytest-asyncio = "*"
-pytest-cov = "*"
-pytest-deadfixtures = "*"
-pytest-mock = "*"
-ruff = "*"
-toml = "*"
+black = "^23.1.0"
+mypy = "^1.1.1"{% if cookiecutter.task_runner == "poethepoet" %}
+poethepoet = "^0.18.1"{% endif %}
+pytest = "^7.2.2"
+pytest-asyncio = "^0.20.3"
+pytest-cov = "^4.0.0"
+pytest-deadfixtures = "^2.2.1"
+pytest-mock = "^3.10.0"
+ruff = "^0.0.255"
+toml = "^0.10.2"
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poetry.group.docs.dependencies]
-mkdocs = "*"
-mkdocs-material = "*"
+mkdocs = "^1.4.2"
+mkdocs-material = "^9.1.3"
 {% endif %}
 [tool.poetry.group.git.dependencies]
-commitizen = "*"
+commitizen = "^2.42.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -158,31 +157,25 @@ addopts = "--strict-markers --showlocals --verbosity 2"
 log_level = "DEBUG"
 
 [tool.ruff]
-select = ["F",
+select = [
+    "F",
     "E",
     "W",
     "C90",
     "I",
     "N",
     "D",
-    # "UP",
     "YTT",
-    # "ANN",
     "S",
     "BLE",
-    # "FBT",
     "B",
     "A",
-    "COM",
     "C4",
     "DTZ",
     "T10",
     "EM",
-    "EXE",
     "ISC",
     "ICN",
-    "G",
-    "INP",
     "PIE",
     "T20",
     "PT",
@@ -190,15 +183,9 @@ select = ["F",
     "RET",
     "SIM",
     "TID",
-    "TCH",
     "ARG",
-    "PTH",
     "ERA",
     "PD",
-    # "PGH",
-    "PL",
-    "TRY",
-    "RSE",
     "RUF",
 ]
 ignore = [
@@ -212,5 +199,6 @@ ignore = [
     "D107",
     "D203",
     "D213",
+    "EM101",
 ]
 exclude = []
