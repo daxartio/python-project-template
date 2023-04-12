@@ -15,6 +15,7 @@
   - [x] black
   - [x] mypy
 - [x] Pytest
+- [ ] PyO3
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
 - [x] Github Actions
   - [x] Github pages
@@ -57,3 +58,5 @@ make format lint test
 2. Add a token to https://github.com/username/your-project/settings/secrets/actions
    - PYPI_USERNAME `__token__`
    - PYPI_PASSWORD `pypi-...`
+3. Workflow permissions https://github.com/username/your-project/settings/actions
+   1. Set "Read and write permissions" to true
