@@ -37,6 +37,8 @@ Welcome! Happy to see you willing to make the project better.
 ```
 
 ## Release
+
+Automatically after merging with the master
 {% if cookiecutter.task_runner == "poethepoet" %}
 1. `poe bump`
 {% elif cookiecutter.task_runner == "Makefile" %}
@@ -62,8 +64,9 @@ A specification for adding human and machine readable meaning to commit messages
 
 #### Type
 
-| feat     | Features                 | A new feature                                                                                          |
+| type     | name                     | description                                                                                            |
 |----------|--------------------------|--------------------------------------------------------------------------------------------------------|
+| feat     | Features                 | A new feature                                                                                          |
 | fix      | Bug Fixes                | A bug fix                                                                                              |
 | docs     | Documentation            | Documentation only changes                                                                             |
 | style    | Styles                   | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) |
