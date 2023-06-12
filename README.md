@@ -55,7 +55,7 @@ make format lint test
 ```
 
 1. Generate an API token, see https://pypi.org/help/
-2. Add a token to https://github.com/username/your-project/settings/secrets/actions
+2. Add the token to https://github.com/username/your-project/settings/secrets/actions
    - PYPI_USERNAME `__token__`
    - PYPI_PASSWORD `pypi-...`
 3. Workflow permissions https://github.com/username/your-project/settings/actions
