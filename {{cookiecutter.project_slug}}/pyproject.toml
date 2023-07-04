@@ -3,12 +3,36 @@ name = "cz_conventional_commits"
 version = "{{ cookiecutter.version }}"
 tag_format = "$version"
 version_files = [
-    "{{cookiecutter.pkg_name}}/_version.py",
+    "{{cookiecutter.pkg_name}}/_version.py",{% if cookiecutter.use_pyo3 == 'True' %}
+    "Cargo.toml:version",{% endif %}
     "pyproject.toml:version"
 ]
 bump_message = "chore(release): version $current_version → $new_version"
 update_changelog_on_bump = true
+{% if cookiecutter.use_pyo3 == 'True' %}
+[project]
+name = "{{ cookiecutter.project_slug }}"
+requires-python = ">={{ cookiecutter.python_version }}"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+license = {file = "LICENSE"}
+readme = "README.md"
+authors = [
+  {email = "{{ cookiecutter.email }}"},
+  {name = "{{ cookiecutter.full_name }}"}
+]
 
+[project.urls]
+repository = "{{ cookiecutter.repository }}"
+homepage = "{{ cookiecutter.homepage }}"
+
+[tool.maturin]
+module-name = "{{ cookiecutter.pkg_name }}._{{ cookiecutter.pkg_name }}"
+features = ["pyo3/extension-module"]
+{% endif %}
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.version }}"
@@ -44,10 +68,13 @@ mkdocs-material = "^9.1.3"
 {% endif %}
 [tool.poetry.group.git.dependencies]
 commitizen = "^2.42.1"
-
+{% if cookiecutter.use_pyo3 == 'True' %}
+[build-system]
+requires = ["poetry-core>=1.0.0", "maturin>=0.14,<0.15"]
+build-backend = "maturin"{% else %}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+build-backend = "poetry.core.masonry.api"{% endif %}
 {% if cookiecutter.task_runner == "poethepoet" %}
 [tool.poe.env]
 CODE = "tests {{ cookiecutter.pkg_name }}"

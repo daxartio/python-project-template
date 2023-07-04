@@ -14,13 +14,14 @@
     "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "year": "{% now 'utc', '%Y' %}",
     "task_runner": [
-        "poethepoet",
-        "Makefile"
+        "Makefile",
+        "poethepoet"
     ],
     "license": [
         "MIT",
         "APACHE"
     ],
     "use_docs": false,
-    "use_cli": false
+    "use_cli": false,
+    "use_pyo3": false
 }

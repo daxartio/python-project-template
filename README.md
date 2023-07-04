@@ -3,9 +3,7 @@
 ## Features
 
 - [x] MIT/Apache License
-- [x] Task runner
-  - [x] [Poe the Poet](https://github.com/nat-n/poethepoet)
-  - [x] Makefile
+- [x] Makefile
 - [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
 - [x] Formatting
   - [x] ruff
@@ -15,7 +13,7 @@
   - [x] black
   - [x] mypy
 - [x] Pytest
-- [ ] PyO3
+- [x] PyO3
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
 - [x] Github Actions
   - [x] Github pages
@@ -58,5 +56,6 @@ make format lint test
 2. Add the token to https://github.com/username/your-project/settings/secrets/actions
    - PYPI_USERNAME `__token__`
    - PYPI_PASSWORD `pypi-...`
+   - If you choose pyo3, you need to add PYPI_API_TOKEN `pypi-...` instead of PYPI_USERNAME and PYPI_PASSWORD
 3. Workflow permissions https://github.com/username/your-project/settings/actions
    1. Set "Read and write permissions" to true

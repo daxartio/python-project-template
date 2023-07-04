@@ -21,11 +21,26 @@ install:  ## Install dependencies
 .PHONY: install-docs
 install-docs:  ## Install docs dependencies
 	poetry install --only docs
+{% if cookiecutter.use_pyo3 == 'True' %}
+.PHONY: publish
+publish:  ## Publish package
+	@$(POETRY_RUN) maturin upload
 
+.PHONY: build-rs
+build-rs:  ## Build .so files
+	$(POETRY_RUN) maturin develop
+
+.PHONY: format-rs
+format-rs:  ## Formatting rs code
+	cargo fmt
+
+.PHONY: lint-rs
+lint-rs:  ## Check rs code
+	cargo check{% else %}
 .PHONY: publish
 publish:  ## Publish package
 	@poetry publish --build --no-interaction --username=$(pypi_username) --password=$(pypi_password)
-
+{% endif %}
 .PHONY: test
 test:  ## Test with coverage
 	$(TEST) --cov=./
@@ -63,7 +78,6 @@ docs:  ## Build docs
 docs-serve:  ## Serve docs
 	$(POETRY_RUN) mkdocs serve
 {% endif %}
-
 .PHONY: bump
 bump:  ## Bump version (commit and tag)
 	$(POETRY_RUN) cz bump
