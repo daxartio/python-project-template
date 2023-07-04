@@ -2,7 +2,6 @@
 import os
 import shutil
 
-USE_MAKEFILE = "{{ cookiecutter.task_runner }}" == 'Makefile'
 USE_DOCS = "{{ cookiecutter.use_docs }}" == 'True'
 USE_CLI = "{{ cookiecutter.use_cli }}" == 'True'
 USE_PYO3 = "{{ cookiecutter.use_pyo3 }}" == 'True'
@@ -12,8 +11,6 @@ USE_APACHE = LICENSE == 'APACHE'
 
 
 def main():
-    if not USE_MAKEFILE:
-        os.remove('Makefile')
     if not USE_DOCS:
         os.remove('mkdocs.yml')
         os.remove('.github/workflows/github_pages.yml')

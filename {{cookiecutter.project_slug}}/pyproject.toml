@@ -52,8 +52,7 @@ python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
-mypy = "^1.1.1"{% if cookiecutter.task_runner == "poethepoet" %}
-poethepoet = "^0.18.1"{% endif %}
+mypy = "^1.1.1"
 pytest = "^7.2.2"
 pytest-asyncio = "^0.20.3"
 pytest-cov = "^4.0.0"
@@ -75,87 +74,7 @@ build-backend = "maturin"{% else %}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"{% endif %}
-{% if cookiecutter.task_runner == "poethepoet" %}
-[tool.poe.env]
-CODE = "tests {{ cookiecutter.pkg_name }}"
 
-[tool.poe.tasks.install-poetry]
-help = "Install poetry"
-cmd = "pip install poetry"
-
-[tool.poe.tasks.install]
-help = "Install dependencies"
-cmd = "poetry install"
-
-[tool.poe.tasks.install-docs]
-help = "Install docs dependencies"
-cmd = "poetry install --only docs"
-
-[tool.poe.tasks.all]
-help = "Run format lint test"
-sequence = ["format", "lint", "test"]
-default_item_type = "ref"
-
-[tool.poe.tasks.publish]
-help = "Publish package"
-cmd = "poetry publish --build --no-interaction --username=${pypi_username} --password=${pypi_password}"
-args = ["pypi_username", "pypi_password"]
-
-[tool.poe.tasks.test]
-help = "Test with coverage"
-cmd = "pytest --cov=./"
-
-[tool.poe.tasks.test-fast]
-help = "Test until error"
-cmd = "pytest --exitfirst"
-
-[tool.poe.tasks.test-failed]
-help = "Test failed"
-cmd = "pytest --last-failed"
-
-[tool.poe.tasks.test-report]
-help = "Report testing"
-sequence = [
-    {cmd = "pytest --cov --cov-report html"},
-    {cmd = "python -m webbrowser 'htmlcov/index.html'"},
-]
-
-[tool.poe.tasks.lint]
-help = "Check code"
-sequence = [
-    {cmd = "ruff ${CODE}"},
-    {cmd = "black --check ${CODE}"},
-    {cmd = "pytest --dead-fixtures --dup-fixtures"},
-    {cmd = "mypy ${CODE}"},
-]
-
-[tool.poe.tasks.format]
-help = "Formatting code"
-sequence = [
-	{cmd = "ruff --fix-only ${CODE}"},
-	{cmd = "black ${CODE}"},
-]
-{% if cookiecutter.use_docs == 'True' %}
-[tool.poe.tasks.docs]
-help = "Build docs"
-cmd = "mkdocs build -s -v"
-
-[tool.poe.tasks.docs-serve]
-help = "Serve docs"
-cmd = "mkdocs serve"
-{% endif %}
-[tool.poe.tasks.bump]
-help = "Bump version (commit and tag)"
-cmd = "cz bump"
-
-[tool.poe.tasks.clean]
-help = "Clean"
-sequence = [
-	{cmd = "rm -rf site || true"},
-	{cmd = "rm -rf dist || true"},
-	{cmd = "rm -rf htmlcov || true"},
-]
-{% endif %}
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_generics = true

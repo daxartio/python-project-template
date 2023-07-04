@@ -13,7 +13,7 @@
   - [x] black
   - [x] mypy
 - [x] Pytest
-- [x] PyO3
+- [x] PyO3 - Rust bindings for Python
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
 - [x] Github Actions
   - [x] Github pages
@@ -46,10 +46,6 @@ cd ./your-project
 
 make install
 make format lint test
-
-# or
-# poetry install
-# poe all
 ```
 
 1. Generate an API token, see https://pypi.org/help/

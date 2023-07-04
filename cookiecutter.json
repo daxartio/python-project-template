@@ -13,10 +13,6 @@
     "branch": "master",
     "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "year": "{% now 'utc', '%Y' %}",
-    "task_runner": [
-        "Makefile",
-        "poethepoet"
-    ],
     "license": [
         "MIT",
         "APACHE"

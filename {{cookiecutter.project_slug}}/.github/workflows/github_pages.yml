@@ -14,22 +14,13 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '{{ cookiecutter.python_version }}'
-{% if cookiecutter.task_runner == "poethepoet" %}
-      - name: Install poetry and poethepoet
-        run: pip install poetry poethepoet
 
-      - name: Install docs dependencies
-        run: poe install-docs
-
-      - name: Generate docs
-        run: poe docs
-{% elif cookiecutter.task_runner == "Makefile" %}
       - name: Install python dependencies
         run: make install-poetry install-docs
 
       - name: Generate docs
         run: make docs
-{% endif %}
+
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
