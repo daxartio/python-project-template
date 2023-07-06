@@ -1,4 +1,4 @@
-name: CI Tests/Lints
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,9 +22,36 @@ jobs:
 
       - name: Run linters
         run: make lint
-{% if cookiecutter.use_docs == 'True' %}
-      - name: Test docs
-        run: make docs
-{% endif %}
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ['{{ cookiecutter.python_version }}']
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: {% raw -%}${{ matrix.version }}{%- endraw %}
+
+      - name: Install python dependencies
+        run: make install-poetry install
+
       - name: Run test
         run: make test
+{% if cookiecutter.use_docs == 'True' %}
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '{{ cookiecutter.python_version }}'
+
+      - name: Install python dependencies
+        run: make install-poetry install-docs
+
+      - name: Test docs
+        run: make docs{% endif %}

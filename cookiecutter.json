@@ -17,7 +17,7 @@
         "MIT",
         "APACHE"
     ],
-    "use_docs": false,
+    "use_docs": true,
     "use_cli": false,
     "use_pyo3": false
 }
