@@ -13,18 +13,6 @@
 pip install {{ cookiecutter.project_slug }}
 ```
 
-### poetry
-
-```
-poetry add {{ cookiecutter.project_slug }}
-```
-
-## Usage
-
-```python
-from {{ cookiecutter.pkg_name }} import __version__
-```
-
 ## License
 
 * [{% if cookiecutter.license == 'MIT' %}MIT{% endif %}{% if cookiecutter.license == 'APACHE' %}Apache-2.0{% endif %} LICENSE](LICENSE)
