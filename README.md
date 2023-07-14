@@ -7,6 +7,7 @@
 - [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
 - [x] Formatting
   - [x] ruff
+  - [x] isort
   - [x] black
 - [x] Linters
   - [x] ruff
