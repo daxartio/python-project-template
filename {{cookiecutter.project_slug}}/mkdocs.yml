@@ -10,6 +10,9 @@ copyright: "Copyright &copy; {{ cookiecutter.year }} {{ cookiecutter.author }}"
 
 nav:
   - "Home": README.md
+  - "Contributing": contributing.md
+  - "Changelog": changelog.md
+  - "Code of Conduct": code-of-conduct.md
 
 theme:
   name: material
@@ -26,3 +29,5 @@ markdown_extensions:
   - admonition
   - codehilite
   - pymdownx.superfences
+  - markdown_include.include:
+      base_path: .
