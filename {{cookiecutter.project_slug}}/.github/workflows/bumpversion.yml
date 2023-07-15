@@ -1,8 +1,9 @@
 name: Bump version
 
 on:
-  push:
-    branches: [ {{ cookiecutter.branch }} ]
+  # push:
+  #   branches: [ {{ cookiecutter.branch }} ]
+  workflow_dispatch:
 
 jobs:
   build:
