@@ -1,5 +1,5 @@
 site_name: "{{ cookiecutter.project_name }}"
-site_url: "{{ cookiecutter.homepage }}"
+site_url: "{{ cookiecutter.site_url }}"
 site_description: "{{ cookiecutter.description }}"
 
 repo_name: "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
@@ -18,12 +18,22 @@ theme:
   name: material
   language: en
   palette:
-    primary: black
-    accent: yellow
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: black
+      accent: yellow
+  icon:
+    repo: fontawesome/brands/github
 
 plugins:
   - search:
-      lang: en
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
 markdown_extensions:
   - admonition
