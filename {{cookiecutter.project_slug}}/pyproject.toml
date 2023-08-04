@@ -27,7 +27,7 @@ authors = [
 
 [project.urls]
 repository = "{{ cookiecutter.repository }}"
-homepage = "{{ cookiecutter.homepage }}"
+homepage = "{{ cookiecutter.repository }}"
 
 [tool.maturin]
 module-name = "{{ cookiecutter.pkg_name }}._{{ cookiecutter.pkg_name }}"
@@ -41,7 +41,7 @@ authors = ["{{ cookiecutter.author }}"]
 license = {% if cookiecutter.license == 'MIT' %}"MIT"{% endif %}{% if cookiecutter.license == 'APACHE' %}"Apache-2.0"{% endif %}
 readme = "README.md"
 repository = "{{ cookiecutter.repository }}"
-homepage = "{{ cookiecutter.homepage }}"{% if cookiecutter.use_docs == 'True' %}
+homepage = "{{ cookiecutter.repository }}"{% if cookiecutter.use_docs == 'True' %}
 documentation = "{{ cookiecutter.site_url }}"{% endif %}
 keywords = []
 {% if cookiecutter.use_cli == 'True' %}

@@ -11,7 +11,7 @@
     "github_username": "username",
     "repository": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
     "branch": "master",
-    "homepage": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
+    "pypi": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
     "site_url": "https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/",
     "year": "{% now 'utc', '%Y' %}",
     "license": [
