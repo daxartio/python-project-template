@@ -62,12 +62,10 @@ black = "^23.1.0"{% if cookiecutter.use_isort == 'True' %}
 isort = "^5.12.0"{% endif %}
 mypy = "^1.1.1"
 pytest = "^7.2.2"
-pytest-asyncio = "^0.20.3"
 pytest-cov = "^4.0.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-mock = "^3.10.0"{% if cookiecutter.use_ruff == 'True' %}
-ruff = "^0.0.255"{% endif %}
-toml = "^0.10.2"
+ruff = "^0.0.282"{% endif %}
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poetry.group.docs.dependencies]
 markdown-include = "^0.8.1"
@@ -110,7 +108,6 @@ skip_covered = true
 fail_under = 100
 
 [tool.pytest.ini_options]
-asyncio_mode = "strict"
 addopts = "--strict-markers --showlocals --verbosity 2"
 log_level = "DEBUG"
 {% if cookiecutter.use_ruff == 'True' %}
@@ -123,17 +120,24 @@ select = [
     "I",
     "N",
     "D",
+    # "UP",
     "YTT",
+    # "ANN",
     "S",
     "BLE",
+    # "FBT",
     "B",
     "A",
-    "C40",
+    "COM",
+    "C4",
     "DTZ",
     "T10",
     "EM",
+    "EXE",
     "ISC",
     "ICN",
+    "G",
+    "INP",
     "PIE",
     "T20",
     "PT",
@@ -141,9 +145,15 @@ select = [
     "RET",
     "SIM",
     "TID",
+    "TCH",
     "ARG",
+    "PTH",
     "ERA",
     "PD",
+    # "PGH",
+    "PL",
+    "TRY",
+    "RSE",
     "RUF",
 ]
 ignore = [
@@ -157,7 +167,7 @@ ignore = [
     "D107",
     "D203",
     "D213",
-    "EM101",
+    "S101",
 ]
 exclude = []
 
