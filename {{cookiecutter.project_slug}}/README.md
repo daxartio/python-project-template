@@ -7,8 +7,6 @@
 
 ## Installation
 
-### pip
-
 ```
 pip install {{ cookiecutter.project_slug }}
 ```
