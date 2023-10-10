@@ -64,23 +64,23 @@ Changelog = "{{ cookiecutter.repository }}/blob/main/CHANGELOG.md/"
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.1.0"{% if cookiecutter.use_isort == 'True' %}
+black = "^23.7.0"{% if cookiecutter.use_isort == 'True' %}
 isort = "^5.12.0"{% endif %}
-mypy = "^1.4.1"{% if cookiecutter.use_pyo3 == 'True' %}
+mypy = "^1.5.1"{% if cookiecutter.use_pyo3 == 'True' %}
 maturin = "^1.2"{% endif %}
-pytest = "^7.2.2"
-pytest-cov = "^4.0.0"
+pytest = "^7.4.2"
+pytest-cov = "^4.1.0"
 pytest-deadfixtures = "^2.2.1"
-pytest-mock = "^3.10.0"{% if cookiecutter.use_ruff == 'True' %}
-ruff = "^0.0.282"{% endif %}
+pytest-mock = "^3.11.1"{% if cookiecutter.use_ruff == 'True' %}
+ruff = "^0.0.292"{% endif %}
 {% if cookiecutter.use_docs == 'True' %}
 [tool.poetry.group.docs.dependencies]
 markdown-include = "^0.8.1"
-mkdocs = "^1.4.2"
-mkdocs-material = "^9.1.3"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.4.5"
 {% endif %}
 [tool.poetry.group.git.dependencies]
-commitizen = "^3.5.3"
+commitizen = "^3.10.0"
 {% if cookiecutter.use_isort == 'True' %}
 [tool.isort]
 profile = "black"
