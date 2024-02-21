@@ -8,7 +8,7 @@ help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
-all: format lint test  ## Run format lint test
+all: format lint test  ## Run formakt lint test
 
 .PHONY: install-poetry
 install-poetry:  ## Install poetry
@@ -21,26 +21,11 @@ install:  ## Install dependencies
 .PHONY: install-docs
 install-docs:  ## Install docs dependencies
 	poetry install --only docs
-{% if cookiecutter.use_pyo3 == 'True' %}
-.PHONY: publish
-publish:  ## Publish package
-	@$(POETRY_RUN) maturin upload
 
-.PHONY: build-rs
-build-rs:  ## Build .so files
-	$(POETRY_RUN) maturin develop
-
-.PHONY: format-rs
-format-rs:  ## Formatting rs code
-	cargo fmt
-
-.PHONY: lint-rs
-lint-rs:  ## Check rs code
-	cargo check{% else %}
 .PHONY: publish
 publish:  ## Publish package
 	@poetry publish --build --no-interaction --username=$(pypi_username) --password=$(pypi_password)
-{% endif %}
+
 .PHONY: test
 test:  ## Test with coverage
 	$(TEST) --cov=./

@@ -4,7 +4,6 @@ import shutil
 
 USE_DOCS = "{{ cookiecutter.use_docs }}" == 'True'
 USE_CLI = "{{ cookiecutter.use_cli }}" == 'True'
-USE_PYO3 = "{{ cookiecutter.use_pyo3 }}" == 'True'
 LICENSE = "{{ cookiecutter.license }}"
 USE_MIT = LICENSE == 'MIT'
 USE_APACHE = LICENSE == 'APACHE'
@@ -22,10 +21,6 @@ def main():
         os.remove('LICENSE-MIT')
     if not USE_APACHE:
         os.remove('LICENSE-APACHE')
-    if not USE_PYO3:
-        os.remove('.github/workflows/maturin.yml')
-        os.remove('Cargo.toml')
-        shutil.rmtree('src')
     else:
         os.remove('.github/workflows/pypi.yml')
     os.rename(f'LICENSE-{LICENSE}', 'LICENSE')

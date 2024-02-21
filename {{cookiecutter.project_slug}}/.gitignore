@@ -130,4 +130,3 @@ dmypy.json
 
 .vscode
 .idea
-{% if cookiecutter.use_pyo3 == 'True' %}Cargo.lock{% endif %}

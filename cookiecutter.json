@@ -4,7 +4,7 @@
     "pkg_name": "{{ cookiecutter.project_slug|replace('-', '_') }}",
     "description": "",
     "version": "0.0.0",
-    "python_version": "3.11",
+    "python_version": "3.12",
     "full_name": "Your Name",
     "email": "email@gmail.com",
     "author": "{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>",
@@ -18,9 +18,8 @@
         "MIT",
         "APACHE"
     ],
-    "use_docs": true,
+    "use_docs": false,
     "use_cli": false,
-    "use_pyo3": false,
-    "use_ruff": false,
+    "use_ruff": true,
     "use_isort": false
 }

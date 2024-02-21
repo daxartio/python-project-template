@@ -1,39 +1,13 @@
-{% if cookiecutter.use_pyo3 == 'True' %}[build-system]
-requires = ["maturin>=1.2,<2.0"]
-build-backend = "maturin"{% else %}[build-system]
+[build-system]
 requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"{% endif %}
-{% if cookiecutter.use_pyo3 == 'True' %}
-[project]
-name = "{{ cookiecutter.project_slug }}"
-version = "{{ cookiecutter.version }}"
-description = "{{ cookiecutter.description }}"
-requires-python = ">={{ cookiecutter.python_version }}"
-classifiers = [
-    "Programming Language :: Rust",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-]
-license = {file = "LICENSE"}
-readme = "README.md"
-authors = [{email = "{{ cookiecutter.email }}"}, {name = "{{ cookiecutter.full_name }}"}]
+build-backend = "poetry.core.masonry.api"
 
-[project.urls]
-repository = "{{ cookiecutter.repository }}"
-homepage = "{{ cookiecutter.repository }}"
-Changelog = "{{ cookiecutter.repository }}/blob/main/CHANGELOG.md/"
-
-[tool.maturin]
-module-name = "{{ cookiecutter.pkg_name }}._{{ cookiecutter.pkg_name }}"
-features = ["pyo3/extension-module"]
-{% endif %}
 [tool.commitizen]
 name = "cz_conventional_commits"
 version = "{{ cookiecutter.version }}"
 tag_format = "$version"
 version_files = [
-    "{{cookiecutter.pkg_name}}/__init__.py",{% if cookiecutter.use_pyo3 == 'True' %}
-    "Cargo.toml:version",{% endif %}
+    "{{cookiecutter.pkg_name}}/__init__.py",
     "pyproject.toml:version"
 ]
 bump_message = "chore(release): version $current_version → $new_version"
@@ -47,13 +21,13 @@ authors = ["{{ cookiecutter.author }}"]
 license = {% if cookiecutter.license == 'MIT' %}"MIT"{% endif %}{% if cookiecutter.license == 'APACHE' %}"Apache-2.0"{% endif %}
 readme = "README.md"
 repository = "{{ cookiecutter.repository }}"
-homepage = "{{ cookiecutter.repository }}"{% if cookiecutter.use_docs == 'True' %}
+homepage = "{{ cookiecutter.repository }}"{% if cookiecutter.use_docs %}
 documentation = "{{ cookiecutter.site_url }}"{% endif %}
 keywords = []
-{% if cookiecutter.use_cli == 'True' %}
+{% if cookiecutter.use_cli %}
 [tool.poetry.scripts]
 {{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli.app:run'
-{% endif %}{% if cookiecutter.use_docs == 'True' %}
+{% endif %}{% if cookiecutter.use_docs %}
 [tool.poetry.urls]
 Changelog = "{{ cookiecutter.site_url }}changelog/"
 {% else %}
@@ -64,16 +38,15 @@ Changelog = "{{ cookiecutter.repository }}/blob/main/CHANGELOG.md/"
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.7.0"{% if cookiecutter.use_isort == 'True' %}
+black = "^23.7.0"{% if cookiecutter.use_isort %}
 isort = "^5.12.0"{% endif %}
-mypy = "^1.7.1"{% if cookiecutter.use_pyo3 == 'True' %}
-maturin = "^1.2"{% endif %}
+mypy = "^1.7.1"
 pytest = "^7.4.2"
 pytest-cov = "^4.1.0"
 pytest-deadfixtures = "^2.2.1"
-pytest-mock = "^3.11.1"{% if cookiecutter.use_ruff == 'True' %}
-ruff = "^0.1.6"{% endif %}
-{% if cookiecutter.use_docs == 'True' %}
+pytest-mock = "^3.11.1"{% if cookiecutter.use_ruff %}
+ruff = "^0.2.2"{% endif %}
+{% if cookiecutter.use_docs %}
 [tool.poetry.group.docs.dependencies]
 markdown-include = "^0.8.1"
 mkdocs = "^1.5.3"
@@ -81,7 +54,7 @@ mkdocs-material = "^9.4.16"
 {% endif %}
 [tool.poetry.group.git.dependencies]
 commitizen = "^3.12.0"
-{% if cookiecutter.use_isort == 'True' %}
+{% if cookiecutter.use_isort %}
 [tool.isort]
 profile = "black"
 {% endif %}
@@ -110,8 +83,8 @@ fail_under = 100
 [tool.pytest.ini_options]
 addopts = "--strict-markers --showlocals --verbosity 2"
 log_level = "DEBUG"
-{% if cookiecutter.use_ruff == 'True' %}
-[tool.ruff]
+{% if cookiecutter.use_ruff %}
+[tool.ruff.lint]
 select = [
     "F",
     "E",
@@ -171,5 +144,5 @@ ignore = [
 ]
 exclude = []
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]{% endif %}

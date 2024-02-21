@@ -2,9 +2,10 @@
 
 .PHONY: install
 install:
-	pip install cookiecutter
+	@pip install cookiecutter
 
 .PHONY: up
 up:
-	rm -r simple-project || true
-	cookiecutter --no-input .
+	@rm -r simple-project || true
+	@cookiecutter --no-input .
+	@echo "Project created successfully"
