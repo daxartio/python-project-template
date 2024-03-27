@@ -44,18 +44,18 @@ test-report:  ## Report testing
 	$(POETRY_RUN) python -m webbrowser 'htmlcov/index.html'
 
 .PHONY: lint
-lint:  ## Check code{% if cookiecutter.use_ruff == 'True' %}
+lint:  ## Check code{% if cookiecutter.use_ruff %}
 	$(POETRY_RUN) ruff $(CODE){% endif %}
 	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
 
 .PHONY: format
-format:  ## Formatting code{% if cookiecutter.use_ruff == 'True' %}
-	$(POETRY_RUN) ruff --fix-only $(CODE){% endif %}{% if cookiecutter.use_isort == 'True' %}
+format:  ## Formatting code{% if cookiecutter.use_ruff  %}
+	$(POETRY_RUN) ruff --fix-only $(CODE){% endif %}{% if cookiecutter.use_isort  %}
 	$(POETRY_RUN) isort $(CODE){% endif %}
 	$(POETRY_RUN) black $(CODE)
-{% if cookiecutter.use_docs == 'True' %}
+{% if cookiecutter.use_docs  %}
 .PHONY: docs
 docs:  ## Build docs
 	$(POETRY_RUN) mkdocs build -s -v

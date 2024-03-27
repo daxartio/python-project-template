@@ -40,7 +40,7 @@ jobs:
 
       - name: Run test
         run: make test
-{% if cookiecutter.use_docs == 'True' %}
+{% if cookiecutter.use_docs  %}
   docs:
     runs-on: ubuntu-latest
     steps:
