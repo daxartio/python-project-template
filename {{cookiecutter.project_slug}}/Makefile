@@ -45,14 +45,14 @@ test-report:  ## Report testing
 
 .PHONY: lint
 lint:  ## Check code{% if cookiecutter.use_ruff %}
-	$(POETRY_RUN) ruff $(CODE){% endif %}
+	$(POETRY_RUN) ruff check $(CODE){% endif %}
 	$(POETRY_RUN) black --check $(CODE)
 	$(POETRY_RUN) pytest --dead-fixtures --dup-fixtures
 	$(POETRY_RUN) mypy $(CODE)
 
 .PHONY: format
 format:  ## Formatting code{% if cookiecutter.use_ruff  %}
-	$(POETRY_RUN) ruff --fix-only $(CODE){% endif %}{% if cookiecutter.use_isort  %}
+	$(POETRY_RUN) ruff format $(CODE){% endif %}{% if cookiecutter.use_isort  %}
 	$(POETRY_RUN) isort $(CODE){% endif %}
 	$(POETRY_RUN) black $(CODE)
 {% if cookiecutter.use_docs  %}

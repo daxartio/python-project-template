@@ -38,14 +38,13 @@ Changelog = "{{ cookiecutter.repository }}/blob/main/CHANGELOG.md/"
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.7.0"{% if cookiecutter.use_isort %}
-isort = "^5.12.0"{% endif %}
-mypy = "^1.7.1"
-pytest = "^7.4.2"
-pytest-cov = "^4.1.0"
+black = "^24.8.0"{% if cookiecutter.use_isort %}
+mypy = "^1.11.2"{% endif %}
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
 pytest-deadfixtures = "^2.2.1"
-pytest-mock = "^3.11.1"{% if cookiecutter.use_ruff %}
-ruff = "^0.2.2"{% endif %}
+pytest-mock = "^3.14.0"{% if cookiecutter.use_ruff %}
+ruff = "^0.6.4"{% endif %}
 {% if cookiecutter.use_docs %}
 [tool.poetry.group.docs.dependencies]
 markdown-include = "^0.8.1"
@@ -53,7 +52,7 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.4.16"
 {% endif %}
 [tool.poetry.group.git.dependencies]
-commitizen = "^3.12.0"
+commitizen = "^3.29.0"
 {% if cookiecutter.use_isort %}
 [tool.isort]
 profile = "black"
@@ -85,63 +84,8 @@ addopts = "--strict-markers --showlocals --verbosity 2"
 log_level = "DEBUG"
 {% if cookiecutter.use_ruff %}
 [tool.ruff.lint]
-select = [
-    "F",
-    "E",
-    "W",
-    "C90",
-    "I",
-    "N",
-    "D",
-    # "UP",
-    "YTT",
-    # "ANN",
-    "S",
-    "BLE",
-    # "FBT",
-    "B",
-    "A",
-    "COM",
-    "C4",
-    "DTZ",
-    "T10",
-    "EM",
-    "EXE",
-    "ISC",
-    "ICN",
-    "G",
-    "INP",
-    "PIE",
-    "T20",
-    "PT",
-    "Q",
-    "RET",
-    "SIM",
-    "TID",
-    "TCH",
-    "ARG",
-    "PTH",
-    "ERA",
-    "PD",
-    # "PGH",
-    "PL",
-    "TRY",
-    "RSE",
-    "RUF",
-]
-ignore = [
-    "D100",
-    "D101",
-    "D102",
-    "D103",
-    "D104",
-    "D105",
-    "D106",
-    "D107",
-    "D203",
-    "D213",
-    "S101",
-]
+select = []
+ignore = []
 exclude = []
 
 [tool.ruff.lint.per-file-ignores]
