@@ -62,14 +62,14 @@ format:  ## Formatting code
 	$(RUNNER) ruff format $(CODE)
 
 {%- if cookiecutter.use_docs %}
+
 .PHONY: docs
 docs:  ## Build docs
 	$(RUNNER) mkdocs build -s -v
 
 .PHONY: docs-serve
 docs-serve:  ## Serve docs
-	$(RUNNER) mkdocs serve
-{%- endif %}
+	$(RUNNER) mkdocs serve{% endif %}
 
 .PHONY: bump
 bump:  ## Bump version (commit and tag)

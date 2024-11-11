@@ -24,10 +24,10 @@ readme = "README.md"
 keywords = []
 dependencies = []
 
-{% if cookiecutter.use_cli -%}
+{%- if cookiecutter.use_cli %}
+
 [project.scripts]
-{{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli.app:run'
-{%- endif %}
+{{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli.app:run'{% endif %}
 
 [project.urls]
 Homepage = "{{ cookiecutter.repository }}"
