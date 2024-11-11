@@ -4,14 +4,11 @@
 
 - [x] MIT/Apache License
 - [x] Makefile
-- [x] [Poetry](https://python-poetry.org/) (python packaging and dependency management made easy)
+- [x] [uv](https://docs.astral.sh/uv/)
 - [x] Formatting
   - [x] ruff
-  - [x] isort
-  - [x] black
 - [x] Linters
   - [x] ruff
-  - [x] black
   - [x] mypy
 - [x] Pytest
 - [x] Documentation with [mkdocs](https://www.mkdocs.org/)
@@ -23,7 +20,6 @@
   - [x] Check a PR title
 - [ ] CLI
   - [x] [argparse](https://docs.python.org/3/howto/argparse.html)
-  - [ ] [typer](https://typer.tiangolo.com)
 
 ## Quickstart
 

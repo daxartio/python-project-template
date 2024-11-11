@@ -8,20 +8,14 @@ Welcome! Happy to see you willing to make the project better.
 
 ### Install
 
-**Activate virtual environment**
+**Install uv**
 
 ```
-python -m venv .venv
+make install-uv
+# pip install uv
 ```
 
-**Install poetry**
-
-```
-make install-poetry
-# pip install poetry
-```
-
-Don't forget to use last version of poetry!
+- don't forget to use the last version of uv
 
 **Install dependencies**
 

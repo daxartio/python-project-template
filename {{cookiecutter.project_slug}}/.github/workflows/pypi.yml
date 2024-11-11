@@ -19,11 +19,8 @@ jobs:
         with:
           python-version: '{{ cookiecutter.python_version }}'
 
-      - name: Install poetry
-        run: make install-poetry
-
       - name: Publish package to pypi
-        run: make publish
+        run: make install-uv publish
         env:
           pypi_username: {% raw -%}${{ secrets.PYPI_USERNAME }}{%- endraw %}
           pypi_password: {% raw -%}${{ secrets.PYPI_PASSWORD }}{%- endraw %}
